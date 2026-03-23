@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday Sanu Baby ❤️</title>
+  <title>Happy Birthday Aarseeya 💖</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -25,7 +25,7 @@
     }
 
     .glass {
-      background: rgba(255,255,255,0.58);
+      background: rgba(255,255,255,0.55);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(255,255,255,0.45);
       box-shadow: 0 15px 35px rgba(0,0,0,0.08);
@@ -50,9 +50,7 @@
     .memory-line,
     .celebrate-wrap,
     .restart-note,
-    .cake-btn-wrap,
-    .quote-wrap,
-    .love-reveal {
+    .cake-btn-wrap {
       opacity: 0;
       transform: translateY(15px);
       transition: all 1s ease;
@@ -61,9 +59,7 @@
     .memory-line.show,
     .celebrate-wrap.show,
     .restart-note.show,
-    .cake-btn-wrap.show,
-    .quote-wrap.show,
-    .love-reveal.show {
+    .cake-btn-wrap.show {
       opacity: 1;
       transform: translateY(0);
     }
@@ -242,11 +238,22 @@
       100% { transform: translateY(-80px) translateX(-16px) scale(1.05); opacity: 0; }
     }
 
-    .quote-box {
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: 0 0 35px rgba(255,92,138,0.12);
-      backdrop-filter: blur(10px);
+    .video-box {
+      box-shadow: 0 18px 45px rgba(0,0,0,0.18);
+      border-radius: 24px;
+      overflow: hidden;
+      background: white;
+    }
+
+    .love-reveal {
+      opacity: 0;
+      transform: scale(0.95) translateY(12px);
+      transition: all 1s ease;
+    }
+
+    .love-reveal.show {
+      opacity: 1;
+      transform: scale(1) translateY(0);
     }
 
     .love-glow {
@@ -267,19 +274,16 @@
 </head>
 <body class="text-center">
 
-  <audio id="song1" src="song1.mp3"></audio>
-  <audio id="song2" src="birthday.mp3"></audio>
-
   <section id="landing" class="min-h-screen flex flex-col items-center justify-center px-4 relative z-10">
-    <p class="text-pink-500 font-bold text-lg mb-3">A little surprise for Sanu Baby ❤️</p>
-    <h1 class="text-5xl md:text-6xl text-pink-500 mb-4">Hey Sanu Baby...</h1>
+    <p class="text-pink-500 font-bold text-lg mb-3">A little surprise for Aarseeya 💌</p>
+    <h1 class="text-5xl md:text-6xl text-pink-500 mb-4">Hey Aarseeya...</h1>
     <p class="text-lg text-gray-500 mb-8">Tap the gift and let me show you something beautiful ✨</p>
     <div onclick="openGift()" class="text-7xl cursor-pointer hover:scale-110 transition">🎁</div>
   </section>
 
   <section id="main" class="hidden-section max-w-5xl mx-auto px-4 py-10 relative z-10">
-    <h1 class="text-5xl md:text-7xl text-pink-500 mb-4">Happy Birthday ❤️</h1>
-    <p class="text-xl md:text-2xl text-gray-600 mb-8">For my Paran Pyari 💌</p>
+    <h1 class="text-5xl md:text-7xl text-pink-500 mb-4">Happy Birthday Aarseeya 🎂</h1>
+    <p class="text-xl md:text-2xl text-gray-600 mb-8">March 25 — your beautiful day ✨</p>
 
     <div class="glass max-w-3xl mx-auto rounded-3xl p-6 md:p-8 mb-10 text-left">
       <p class="text-center text-2xl font-bold text-pink-500 mb-5">To my Paran Pyari 💌</p>
@@ -311,21 +315,17 @@
       </p>
     </div>
 
+    <div class="max-w-3xl mx-auto mb-10">
+      <div class="video-box">
+        <video id="videoPlayer" class="w-full" playsinline></video>
+      </div>
+    </div>
+
     <div id="photos-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-6"></div>
 
     <p id="memory-line" class="memory-line text-xl md:text-2xl text-pink-500 font-semibold text-center mb-6">
       Oh deen bhi kya deen thya 💖
     </p>
-
-    <div id="quote-wrap" class="quote-wrap max-w-3xl mx-auto mb-8">
-      <div class="quote-box rounded-3xl p-6 text-center">
-        <p class="text-2xl md:text-3xl text-pink-500 font-bold mb-4">And after all this...</p>
-        <p class="text-lg md:text-xl text-gray-700 leading-8">
-          it was always you, Sanu Baby ❤️<br>
-          in every beat, every prayer, every quiet little feeling.
-        </p>
-      </div>
-    </div>
 
     <div id="celebrate-wrap" class="celebrate-wrap text-center mt-6">
       <button onclick="startBirthdayCelebration()" class="bg-pink-500 hover:bg-pink-600 text-white px-7 py-3 rounded-full font-bold shadow-lg transition-transform hover:scale-105">
@@ -358,7 +358,7 @@
       </div>
 
       <div class="mb-6">
-        <span id="typedName" class="typing-name text-4xl md:text-6xl font-bold glow-text">SANU BABY</span>
+        <span id="typedName" class="typing-name text-4xl md:text-6xl font-bold glow-text">AARSEEYA</span>
       </div>
 
       <div id="ecgWrap" class="ecg-wrap">
@@ -389,7 +389,7 @@
       </p>
 
       <p id="hbText2" class="heartbeat-text text-lg md:text-2xl text-pink-100 max-w-2xl mx-auto leading-8">
-        In this silence, in this night, in this heart... it’s always you, Paran Pyari.
+        In this silence, in this night, in this heart... it’s always you, Aarseeya.
       </p>
 
       <p id="hbText3" class="heartbeat-text text-base md:text-xl text-pink-200 max-w-2xl mx-auto leading-8 mt-6">
@@ -421,6 +421,7 @@
     const main = document.getElementById("main");
     const heartbeatSection = document.getElementById("heartbeatSection");
     const cakeSection = document.getElementById("cakeSection");
+    const video = document.getElementById("videoPlayer");
 
     const photos = ["photo1.jpg", "photo2.jpg", "photo3.jpg"];
     const photosContainer = document.getElementById("photos-container");
@@ -428,10 +429,6 @@
     const celebrateWrap = document.getElementById("celebrate-wrap");
     const cakeBtnWrap = document.getElementById("cake-btn-wrap");
     const restartMsg = document.getElementById("restartMsg");
-    const quoteWrap = document.getElementById("quote-wrap");
-
-    const song1 = document.getElementById("song1");
-    const song2 = document.getElementById("song2");
 
     let birthdayStarted = false;
     let heartbeatRunning = false;
@@ -445,35 +442,19 @@
       gsap.to(main, { opacity: 1, duration: 1 });
 
       showPhotosOneByOne();
-      startFirstSong();
+      playKamleya();
     }
 
-    function startFirstSong() {
-      song1.currentTime = 0;
-      song1.volume = 1;
-      song1.play();
+    function playKamleya() {
+      video.src = "video1.mp4";
+      video.currentTime = 0;
+      video.play();
 
       clearTimeout(currentStepTimeout);
       currentStepTimeout = setTimeout(() => {
-        fadeOut(song1, 6000);
-        setTimeout(showHeartbeatScene, 6000);
+        video.pause();
+        showHeartbeatScene();
       }, 100000);
-    }
-
-    function fadeOut(audio, duration) {
-      let steps = 20;
-      let stepTime = duration / steps;
-      let volStep = audio.volume / steps;
-
-      let fade = setInterval(() => {
-        if (audio.volume > 0) {
-          audio.volume = Math.max(0, audio.volume - volStep);
-        } else {
-          clearInterval(fade);
-          audio.pause();
-          audio.currentTime = 0;
-        }
-      }, stepTime);
     }
 
     function showHeartbeatScene() {
@@ -497,22 +478,27 @@
         heartbeatSection.style.display = "none";
         main.style.display = "block";
         gsap.to(main, { opacity: 1, duration: 1 });
-        quoteWrap.classList.add("show");
+        playQuote();
       }, 60000);
+    }
+
+    function playQuote() {
+      video.src = "quote.mp4";
+      video.currentTime = 0;
+      video.play();
     }
 
     function startBirthdayCelebration() {
       if (birthdayStarted) return;
       birthdayStarted = true;
 
-      song2.currentTime = 0;
-      song2.volume = 1;
-      song2.play();
+      video.src = "birthday.mp4";
+      video.currentTime = 0;
+      video.play();
 
-      megaFireworks();
       setTimeout(() => {
         restartMsg.classList.add("show");
-      }, 2500);
+      }, 3000);
     }
 
     function createPhotoCard(photoPath, index) {
@@ -530,9 +516,8 @@
     function showPhotosOneByOne(index = 0) {
       if (index >= photos.length) {
         setTimeout(() => memoryLine.classList.add("show"), 400);
-        setTimeout(() => quoteWrap.classList.add("show"), 800);
-        setTimeout(() => celebrateWrap.classList.add("show"), 1300);
-        setTimeout(() => cakeBtnWrap.classList.add("show"), 1800);
+        setTimeout(() => celebrateWrap.classList.add("show"), 900);
+        setTimeout(() => cakeBtnWrap.classList.add("show"), 1400);
         return;
       }
 
@@ -556,25 +541,25 @@
     }
 
     function fireworksFinale() {
-      megaFireworks();
+      fireBurst(12);
       setTimeout(() => {
-        alert("I love you so much, Sanu Baby ❤️🎆");
+        alert("I love you so much, Aarseeya 💖🎆");
       }, 1800);
     }
 
-    function megaFireworks() {
-      for (let wave = 0; wave < 10; wave++) {
+    function fireBurst(count = 8) {
+      for (let i = 0; i < count; i++) {
         setTimeout(() => {
-          for (let j = 0; j < 28; j++) {
+          for (let j = 0; j < 24; j++) {
             const spark = document.createElement("div");
             spark.className = "spark";
-            spark.style.left = (window.innerWidth * (0.15 + Math.random() * 0.7)) + "px";
-            spark.style.top = (window.innerHeight * (0.08 + Math.random() * 0.45)) + "px";
-            spark.style.color = ["#f9a8d4","#fcd34d","#c4b5fd","#93c5fd","#ffffff","#ff5c8a"][Math.floor(Math.random() * 6)];
+            spark.style.left = (window.innerWidth * (0.2 + Math.random() * 0.6)) + "px";
+            spark.style.top = (window.innerHeight * (0.1 + Math.random() * 0.5)) + "px";
+            spark.style.color = ["#f9a8d4","#fcd34d","#c4b5fd","#93c5fd","#ffffff"][Math.floor(Math.random() * 5)];
             document.body.appendChild(spark);
-            setTimeout(() => spark.remove(), 2200);
+            setTimeout(() => spark.remove(), 2000);
           }
-        }, wave * 220);
+        }, i * 200);
       }
     }
 
@@ -615,7 +600,7 @@
 
     function startFloatingWords() {
       const box = document.getElementById("heartbeatWords");
-      const words = ["Sanu Baby", "my heart", "paran pyari", "forever", "love", "buduuu", "always"];
+      const words = ["Aarseeya", "my heart", "paran pyari", "forever", "love", "buduuu", "mine", "always"];
 
       wordInterval = setInterval(() => {
         const w = document.createElement("div");
