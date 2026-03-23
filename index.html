@@ -24,6 +24,10 @@
       opacity: 0;
     }
 
+    .title-font {
+      font-family: cursive;
+    }
+
     .glass {
       background: rgba(255,255,255,0.55);
       backdrop-filter: blur(12px);
@@ -107,8 +111,7 @@
       position: relative;
       width: 180px;
       height: 180px;
-      margin: 0 auto 26px;
-      z-index: 3;
+      margin: 0 auto 30px;
     }
 
     .pulse-heart {
@@ -151,8 +154,6 @@
       opacity: 0;
       transform: translateY(18px);
       transition: all 1s ease;
-      position: relative;
-      z-index: 3;
     }
 
     .heartbeat-text.show {
@@ -166,76 +167,6 @@
         0 0 8px rgba(255, 192, 203, 0.9),
         0 0 18px rgba(255, 92, 138, 0.7),
         0 0 35px rgba(255, 92, 138, 0.45);
-    }
-
-    .typing-name {
-      display: inline-block;
-      overflow: hidden;
-      white-space: nowrap;
-      border-right: 3px solid rgba(255,255,255,0.7);
-      width: 0;
-    }
-
-    .typing-name.show {
-      animation: typing 2.8s steps(8, end) forwards, blink .8s infinite;
-    }
-
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-
-    @keyframes blink {
-      0%, 100% { border-color: transparent; }
-      50% { border-color: rgba(255,255,255,0.8); }
-    }
-
-    .ecg-wrap {
-      width: min(90vw, 820px);
-      margin: 0 auto 26px;
-      position: relative;
-      z-index: 3;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: all 1s ease;
-    }
-
-    .ecg-wrap.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .ecg-line {
-      stroke: #ff7aa8;
-      stroke-width: 4;
-      fill: none;
-      filter: drop-shadow(0 0 8px rgba(255,122,168,0.9));
-      stroke-dasharray: 900;
-      stroke-dashoffset: 900;
-      animation: ecgMove 2.2s linear infinite;
-    }
-
-    @keyframes ecgMove {
-      0% { stroke-dashoffset: 900; }
-      100% { stroke-dashoffset: 0; }
-    }
-
-    .hb-word {
-      position: absolute;
-      color: rgba(255, 221, 234, 0.18);
-      font-size: clamp(16px, 2vw, 26px);
-      font-weight: 700;
-      pointer-events: none;
-      z-index: 1;
-      animation: driftWord 12s linear infinite;
-      text-shadow: 0 0 16px rgba(255,255,255,0.08);
-    }
-
-    @keyframes driftWord {
-      0% { transform: translateY(20px) translateX(0) scale(0.95); opacity: 0; }
-      15% { opacity: 1; }
-      50% { transform: translateY(-30px) translateX(12px) scale(1); opacity: 0.9; }
-      100% { transform: translateY(-80px) translateX(-16px) scale(1.05); opacity: 0; }
     }
 
     .video-box {
@@ -274,6 +205,7 @@
 </head>
 <body class="text-center">
 
+  <!-- landing -->
   <section id="landing" class="min-h-screen flex flex-col items-center justify-center px-4 relative z-10">
     <p class="text-pink-500 font-bold text-lg mb-3">A little surprise for Aarseeya 💌</p>
     <h1 class="text-5xl md:text-6xl text-pink-500 mb-4">Hey Aarseeya...</h1>
@@ -281,6 +213,7 @@
     <div onclick="openGift()" class="text-7xl cursor-pointer hover:scale-110 transition">🎁</div>
   </section>
 
+  <!-- main celebration -->
   <section id="main" class="hidden-section max-w-5xl mx-auto px-4 py-10 relative z-10">
     <h1 class="text-5xl md:text-7xl text-pink-500 mb-4">Happy Birthday Aarseeya 🎂</h1>
     <p class="text-xl md:text-2xl text-gray-600 mb-8">March 25 — your beautiful day ✨</p>
@@ -315,12 +248,14 @@
       </p>
     </div>
 
+    <!-- video area -->
     <div class="max-w-3xl mx-auto mb-10">
       <div class="video-box">
         <video id="videoPlayer" class="w-full" playsinline></video>
       </div>
     </div>
 
+    <!-- photos -->
     <div id="photos-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-6"></div>
 
     <p id="memory-line" class="memory-line text-xl md:text-2xl text-pink-500 font-semibold text-center mb-6">
@@ -345,43 +280,13 @@
     </p>
   </section>
 
+  <!-- heartbeat scene -->
   <section id="heartbeatSection" class="hidden-section heartbeat-scene flex flex-col items-center justify-center px-6 text-center">
-    <div id="heartbeatWords"></div>
-
-    <div class="relative z-10 max-w-5xl w-full">
-      <p class="text-pink-200 text-sm md:text-base mb-5 tracking-[0.3em] uppercase">Heartbeat mode</p>
-
+    <div class="relative z-10">
       <div class="pulse-heart-wrap">
         <div class="ring"></div>
         <div class="ring two"></div>
         <div class="pulse-heart">❤️</div>
-      </div>
-
-      <div class="mb-6">
-        <span id="typedName" class="typing-name text-4xl md:text-6xl font-bold glow-text">AARSEEYA</span>
-      </div>
-
-      <div id="ecgWrap" class="ecg-wrap">
-        <svg viewBox="0 0 900 160" class="w-full">
-          <path class="ecg-line" d="M0 90 
-            L110 90 
-            L150 90 
-            L180 90 
-            L205 90 
-            L220 45 
-            L240 125 
-            L265 28 
-            L295 90 
-            L390 90 
-            L430 90 
-            L460 90 
-            L485 90 
-            L500 55 
-            L520 118 
-            L545 22 
-            L575 90 
-            L900 90" />
-        </svg>
       </div>
 
       <p id="hbText1" class="heartbeat-text text-2xl md:text-4xl font-bold glow-text mb-5">
@@ -391,13 +296,10 @@
       <p id="hbText2" class="heartbeat-text text-lg md:text-2xl text-pink-100 max-w-2xl mx-auto leading-8">
         In this silence, in this night, in this heart... it’s always you, Aarseeya.
       </p>
-
-      <p id="hbText3" class="heartbeat-text text-base md:text-xl text-pink-200 max-w-2xl mx-auto leading-8 mt-6">
-        Slow... deep... soft... and then all at once — like love learning how to breathe.
-      </p>
     </div>
   </section>
 
+  <!-- cake -->
   <section id="cakeSection" class="hidden-section min-h-screen flex flex-col items-center justify-center px-4 py-16 relative z-10">
     <h2 class="text-4xl md:text-5xl text-pink-500 mb-8">Make a wish... 🎂</h2>
 
@@ -434,7 +336,6 @@
     let heartbeatRunning = false;
     let heartbeatInterval;
     let currentStepTimeout = null;
-    let wordInterval = null;
 
     function openGift() {
       landing.style.display = "none";
@@ -454,7 +355,7 @@
       currentStepTimeout = setTimeout(() => {
         video.pause();
         showHeartbeatScene();
-      }, 100000);
+      }, 100000); // 1:40
     }
 
     function showHeartbeatScene() {
@@ -462,24 +363,20 @@
       heartbeatSection.style.display = "flex";
       gsap.to(heartbeatSection, { opacity: 1, duration: 1 });
 
-      document.getElementById("typedName").classList.add("show");
-      setTimeout(() => document.getElementById("ecgWrap").classList.add("show"), 500);
-      setTimeout(() => document.getElementById("hbText1").classList.add("show"), 900);
-      setTimeout(() => document.getElementById("hbText2").classList.add("show"), 1800);
-      setTimeout(() => document.getElementById("hbText3").classList.add("show"), 2800);
-
       startHeartbeatSound();
-      startFloatingWords();
+      startHeartbeatVisuals();
+
+      setTimeout(() => document.getElementById("hbText1").classList.add("show"), 400);
+      setTimeout(() => document.getElementById("hbText2").classList.add("show"), 1800);
 
       clearTimeout(currentStepTimeout);
       currentStepTimeout = setTimeout(() => {
         stopHeartbeatSound();
-        stopFloatingWords();
         heartbeatSection.style.display = "none";
         main.style.display = "block";
         gsap.to(main, { opacity: 1, duration: 1 });
         playQuote();
-      }, 60000);
+      }, 60000); // 1 minute
     }
 
     function playQuote() {
@@ -510,6 +407,7 @@
         </div>
       `;
       photosContainer.appendChild(wrapper);
+
       setTimeout(() => wrapper.classList.add("show"), 100);
     }
 
@@ -563,6 +461,12 @@
       }
     }
 
+    function startHeartbeatVisuals() {
+      for (let i = 0; i < 30; i++) {
+        setTimeout(() => createSpark(), i * 200);
+      }
+    }
+
     function startHeartbeatSound() {
       if (heartbeatRunning) return;
       heartbeatRunning = true;
@@ -596,28 +500,6 @@
     function stopHeartbeatSound() {
       heartbeatRunning = false;
       clearInterval(heartbeatInterval);
-    }
-
-    function startFloatingWords() {
-      const box = document.getElementById("heartbeatWords");
-      const words = ["Aarseeya", "my heart", "paran pyari", "forever", "love", "buduuu", "mine", "always"];
-
-      wordInterval = setInterval(() => {
-        const w = document.createElement("div");
-        w.className = "hb-word";
-        w.innerText = words[Math.floor(Math.random() * words.length)];
-        w.style.left = Math.random() * 85 + "vw";
-        w.style.top = (55 + Math.random() * 35) + "vh";
-        w.style.animationDuration = (8 + Math.random() * 6) + "s";
-        box.appendChild(w);
-
-        setTimeout(() => w.remove(), 14000);
-      }, 700);
-    }
-
-    function stopFloatingWords() {
-      clearInterval(wordInterval);
-      document.getElementById("heartbeatWords").innerHTML = "";
     }
 
     function createHeart() {
