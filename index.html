@@ -37,6 +37,23 @@
 
     .polaroid {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(25px) scale(0.98);
+    }
+
+    .polaroid.show {
+      animation: photoReveal 0.9s ease forwards;
+    }
+
+    @keyframes photoReveal {
+      from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
     .polaroid:hover {
@@ -72,7 +89,11 @@
       You are turning <span class="font-bold text-pink-500">23th</span> today! ✨
     </p>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-16" id="photos-container"></div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-6" id="photos-container"></div>
+
+    <p class="text-xl md:text-2xl text-rose-500 font-semibold mb-12">
+      Oh deen bhi kyah deen thya 💖
+    </p>
 
     <p class="text-2xl md:text-3xl text-gray-700 mb-4">I got you a cake...</p>
 
@@ -109,6 +130,10 @@
         <img src="${p}" class="rounded-xl w-full h-72 object-cover" alt="Memory ${i + 1}">
       `;
       container.appendChild(div);
+
+      setTimeout(() => {
+        div.classList.add("show");
+      }, i * 900);
     });
 
     function createHeart() {
