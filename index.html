@@ -1,141 +1,690 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday ❤️</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday My Paran Pyari 💖</title>
 
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta property="og:title" content="Happy Birthday Baby! ❤️">
+  <meta property="og:description" content="I have a sweet little surprise for you. Tap to open!">
+  <meta property="og:image" content="https://img.icons8.com/clouds/500/000000/gift.png">
 
-<style>
-body {
-  font-family: 'Poppins', sans-serif;
-  background: #fff0f5;
-  overflow-x: hidden;
-}
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&family=Pacifico&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-.title-font { font-family: 'Pacifico', cursive; }
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pastelPink: '#ffd1dc',
+            pastelCream: '#fff7fb',
+            deepRose: '#ff5c8a',
+            softGold: '#ffe58f',
+            softLavender: '#e9d5ff'
+          },
+          fontFamily: {
+            header: ['Pacifico', 'cursive'],
+            body: ['Nunito', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
 
-.hidden { display:none; }
+  <style>
+    html { scroll-behavior: smooth; }
 
-.photo {
-  opacity:0;
-  transform: translateY(60px);
-}
+    body {
+      background: linear-gradient(135deg, #fff0f5 0%, #fdf2ff 45%, #fff7ed 100%);
+      overflow-x: hidden;
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      position: relative;
+    }
 
-.photo.show {
-  animation: slide 0.8s ease forwards;
-}
+    .hidden-section {
+      display: none;
+      opacity: 0;
+    }
 
-@keyframes slide {
-  to {
-    opacity:1;
-    transform: translateY(0);
-  }
-}
-</style>
+    .blob {
+      position: fixed;
+      filter: blur(50px);
+      z-index: -4;
+      opacity: 0.45;
+      animation: floatBlob 11s infinite ease-in-out;
+    }
+
+    @keyframes floatBlob {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(25px, -25px); }
+    }
+
+    .glass {
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.55);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    }
+
+    .gift-bounce {
+      animation: bounceGift 1.8s infinite ease-in-out;
+    }
+
+    @keyframes bounceGift {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .photo-card {
+      opacity: 0;
+      transform: translateY(60px) scale(0.97);
+    }
+
+    .photo-card.show {
+      animation: photoRise 0.9s ease forwards;
+    }
+
+    @keyframes photoRise {
+      from {
+        opacity: 0;
+        transform: translateY(60px) scale(0.97);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .polaroid {
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .polaroid:hover {
+      transform: translateY(-6px) scale(1.03) rotate(1deg);
+      box-shadow: 0 18px 35px rgba(0,0,0,0.16);
+    }
+
+    .memory-line,
+    .celebrate-wrap,
+    .restart-note {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: all 1s ease;
+    }
+
+    .memory-line.show,
+    .celebrate-wrap.show,
+    .restart-note.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .paper-texture {
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,0.88), rgba(255,255,255,0.88)),
+        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.1'/%3E%3C/svg%3E");
+      box-shadow: 0 10px 30px -5px rgba(0,0,0,0.1);
+    }
+
+    .heart, .star, .spark, .light-dot {
+      position: fixed;
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .heart {
+      color: #ff5c8a;
+      text-shadow: 0 0 10px rgba(255,255,255,0.8);
+      animation: fallDown linear forwards;
+    }
+
+    @keyframes fallDown {
+      from { transform: translateY(-10vh); opacity: 1; }
+      to { transform: translateY(110vh); opacity: 0; }
+    }
+
+    .star {
+      width: 7px;
+      height: 7px;
+      background: white;
+      border-radius: 9999px;
+      box-shadow: 0 0 10px white, 0 0 20px #f9a8d4;
+      animation: twinkle 2s infinite ease-in-out;
+      opacity: 0.8;
+    }
+
+    .spark {
+      width: 10px;
+      height: 10px;
+      border-radius: 9999px;
+      animation: twinkle 1.8s infinite ease-in-out;
+      box-shadow: 0 0 10px currentColor, 0 0 22px currentColor;
+      opacity: 0.9;
+    }
+
+    .light-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 9999px;
+      animation: floatLight 4s linear forwards;
+      box-shadow: 0 0 12px currentColor, 0 0 26px currentColor;
+      opacity: 0.85;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { transform: scale(0.7); opacity: 0.35; }
+      50% { transform: scale(1.35); opacity: 1; }
+    }
+
+    @keyframes floatLight {
+      from { transform: translateY(0); opacity: .95; }
+      to { transform: translateY(-120px); opacity: 0; }
+    }
+
+    .candle-flame {
+      animation: flameFlicker 0.18s infinite alternate;
+      transform-origin: center bottom;
+    }
+
+    @keyframes flameFlicker {
+      from { transform: scale(1) rotate(-2deg); }
+      to { transform: scale(1.06) rotate(2deg); }
+    }
+
+    .pulse-soft {
+      animation: pulseSoft 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseSoft {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
+    .fade-up {
+      animation: fadeUp 1s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
+<body class="text-gray-700 font-body min-h-screen relative">
 
-<body class="flex flex-col items-center justify-center min-h-screen text-center">
+  <div class="blob bg-pink-300 w-72 h-72 rounded-full top-0 left-0 mix-blend-multiply"></div>
+  <div class="blob bg-purple-300 w-72 h-72 rounded-full bottom-0 right-0 mix-blend-multiply"></div>
+  <div class="blob bg-yellow-200 w-56 h-56 rounded-full top-1/3 right-1/4 mix-blend-multiply"></div>
 
-<!-- LANDING -->
-<div id="landing">
-  <h1 class="title-font text-5xl text-pink-500 mb-6">Hey Baby...</h1>
-  <p class="mb-6">Tap the gift 🎁</p>
-
-  <div onclick="openGift()" class="text-6xl cursor-pointer">🎁</div>
-</div>
-
-<!-- CELEBRATION -->
-<div id="main" class="hidden max-w-4xl px-4">
-
-  <h1 class="title-font text-5xl text-pink-500 mb-4">Happy Birthday!</h1>
-  <p class="mb-6">You are turning <b>23rd</b> today ✨</p>
-
-  <!-- MUSIC BUTTON -->
-  <button onclick="playMusic()" class="mb-6 bg-pink-500 text-white px-6 py-3 rounded-full">
-    Start Celebration 🎶
-  </button>
-
-  <!-- YOUTUBE (hidden) -->
-  <iframe id="yt"
-    width="0" height="0"
-    src=""
-    allow="autoplay"
-  ></iframe>
-
-  <!-- MESSAGE -->
-  <div class="bg-white p-6 rounded-xl shadow mb-10 text-left">
-    <p class="text-center font-semibold text-pink-500 mb-4">
-      To my Paran Pyari 💌
-    </p>
-
-    Happy Birthday to the girl who holds such a special place in my heart.🥺🤍<br><br>
-
-    Today is your day, but somehow I feel grateful too…<br>
-    Grateful because in this huge world, I got someone like you.💘<br><br>
-
-    Thank you for coming into my life and making everything feel lighter.<br>
-    Thank you for every smile you gave me.🥺<br>
-    Thank you for every laugh, every care, every moment.🤍🧸<br><br>
-
-    You are the person my heart feels safe with.😭<br><br>
-
-    I love you so much, paran pyari.🌍<br>
-    More deeply than words can hold.✨<br><br>
-
-    <p class="text-center font-semibold text-pink-500 mt-4">
-      Happppppppppy Birthday, buduuu 🎂💫
-    </p>
+  <div id="player-wrap" class="fixed bottom-0 right-0 w-0 h-0 overflow-hidden">
+    <div id="yt-player"></div>
   </div>
 
-  <!-- PHOTOS -->
-  <div id="photos" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4"></div>
+  <section id="section-landing" class="text-center z-10 w-full max-w-md px-4 min-h-screen flex flex-col items-center justify-center">
+    <p class="text-pink-500 font-bold text-lg mb-3">A little teasing surprise for my baby 💌</p>
+    <h1 class="font-header text-4xl md:text-6xl text-deepRose mb-6">
+      Hey Baby...
+    </h1>
+    <p class="text-lg text-gray-500 mb-8">
+      I have a little surprise for you... but only if you open the gift first 😚
+    </p>
 
-  <!-- LINE -->
-  <p id="line" class="text-pink-500 font-semibold text-xl opacity-0">
-    Oh deen bhi kya deen thya 💖
-  </p>
+    <div id="gift-box-container" class="gift-bounce cursor-pointer mx-auto w-52 h-52 relative transform transition-transform hover:scale-105" onclick="openGift()">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-full drop-shadow-xl">
+        <rect x="40" y="80" width="120" height="100" fill="#ffd1dc" rx="5" />
+        <rect x="90" y="80" width="20" height="100" fill="#ff6b6b" />
+        <rect id="lid" x="30" y="60" width="140" height="30" fill="#ff99ac" rx="5" />
+        <rect id="lid-ribbon" x="90" y="60" width="20" height="30" fill="#ff6b6b" />
+        <path id="bow" d="M100 60 C80 30 50 60 90 65 C50 65 30 30 95 60 C105 30 140 30 110 60 C150 50 160 30 100 60" fill="none" stroke="#ff6b6b" stroke-width="8" stroke-linecap="round" />
+      </svg>
+      <p class="mt-4 text-sm text-gray-400 animate-pulse">(Tap to open)</p>
+    </div>
+  </section>
 
-</div>
+  <section id="section-celebration" class="hidden-section w-full max-w-5xl mx-auto px-4 pb-20 pt-10 z-10 relative">
+    <div class="text-center mb-8 fade-up">
+      <h2 class="font-header text-5xl md:text-7xl text-deepRose mb-2">Happy Birthday!</h2>
+      <p class="text-xl md:text-2xl text-gray-600 mb-4">
+        You are turning <span id="age-span" class="font-bold text-pink-500"></span> today! ✨
+      </p>
+      <p class="text-lg text-gray-500 max-w-2xl mx-auto">
+        And yes... this whole little world right here is just for you, my paran pyari 💖
+      </p>
+    </div>
 
-<script>
-function openGift(){
-  document.getElementById("landing").style.display="none";
-  document.getElementById("main").classList.remove("hidden");
+    <div class="glass max-w-3xl mx-auto rounded-3xl p-6 md:p-8 mb-10 fade-up">
+      <p class="text-center text-xl md:text-2xl font-bold text-pink-500 mb-5">To my Paran Pyari 💌</p>
 
-  showPhotos();
-}
+      <div class="text-left text-gray-700 leading-8 text-lg">
+        <p class="mb-4">Happy Birthday to the girl who holds such a special place in my heart.🥺🤍</p>
 
-function playMusic(){
-  document.getElementById("yt").src =
-  "https://www.youtube.com/embed/73Hld4gpaPA?autoplay=1&loop=1&playlist=73Hld4gpaPA";
-}
+        <p class="mb-4">
+          Today is your day, but somehow I feel grateful too…<br>
+          Grateful because in this huge world, I got someone like you.<br>
+          Someone so kind, so understanding, so loving, and so precious.💘
+        </p>
 
-const photos = ["photo1.jpg","photo2.jpg","photo3.jpg"];
-const container = document.getElementById("photos");
+        <p class="mb-4">
+          Thank you for coming into my life and making everything feel lighter.<br>
+          Thank you for every smile you gave me when I needed it the most.🥺<br>
+          Thank you for every laugh, every care, every little effort, and every moment of love.🤍🧸<br>
+          Thank youuu so much for being patient with me, for supporting me, and for being my peace.🎀
+        </p>
 
-function showPhotos(i=0){
-  if(i>=photos.length){
-    setTimeout(()=>{
-      document.getElementById("line").style.opacity="1";
-    },500);
-    return;
-  }
+        <p class="mb-4">
+          You are not just special to me.<br>
+          You are the kind of person my heart feels safe with.<br>
+          The kind of person I can never stop appreciating.<br>
+          The kind of person I never want to lose.😭
+        </p>
 
-  const div = document.createElement("div");
-  div.className="photo bg-white p-2 rounded-xl shadow";
+        <p class="mb-2">
+          I love you so much, paran pyari.🌍<br>
+          More deeply than these words can hold.<br>
+          More truly than I have ever loved before.<br>
+          And on your birthday, I just want you to know that your happiness matters so much to me.✨
+        </p>
 
-  div.innerHTML = `<img src="${photos[i]}" class="w-full h-72 object-cover rounded">`;
+        <p class="text-center text-xl md:text-2xl font-bold text-pink-500 mt-6">
+          Happppppppppy Birthday, buduuu 🎂💫
+        </p>
+      </div>
+    </div>
 
-  container.appendChild(div);
+    <div class="max-w-4xl mx-auto mb-12">
+      <div id="photos-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-6"></div>
 
-  setTimeout(()=> div.classList.add("show"),100);
+      <p id="memory-line" class="memory-line text-xl md:text-2xl text-rose-500 font-semibold text-center">
+        Oh deen bhi kya deen thya 💖
+      </p>
 
-  setTimeout(()=> showPhotos(i+1),1200);
-}
-</script>
+      <div id="celebrate-wrap" class="celebrate-wrap text-center mt-8">
+        <button onclick="startBirthdayCelebration()" class="bg-pink-500 hover:bg-pink-600 text-white px-7 py-3 rounded-full font-bold shadow-lg transition-transform hover:scale-105">
+          Start Celebration 🎉
+        </button>
+      </div>
+    </div>
 
+    <div class="text-center">
+      <p class="mb-4 text-gray-500 text-lg">I got you a cake...</p>
+      <button onclick="scrollToCake()" class="bg-pink-400 text-white px-6 py-3 rounded-full font-bold shadow-lg hover:bg-pink-500 transition-colors animate-bounce">
+        See the Cake ↓
+      </button>
+
+      <p id="restartMsg" class="restart-note text-center text-pink-500 font-semibold mt-8 text-lg">
+        Wanna listen again? 💌<br>
+        Gotta restart the surprise again completely ✨
+      </p>
+    </div>
+  </section>
+
+  <section id="section-cake" class="hidden-section w-full max-w-md px-4 py-20 text-center z-10 relative">
+    <h2 class="font-header text-3xl md:text-5xl text-gray-700 mb-8">Make a wish... 🎂</h2>
+
+    <div class="glass rounded-3xl p-6">
+      <div class="relative w-64 h-64 mx-auto cursor-pointer pulse-soft" onclick="blowCandle()">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+          <ellipse cx="100" cy="170" rx="90" ry="20" fill="#e0e0e0" />
+          <rect x="50" y="110" width="100" height="60" rx="5" fill="#f8b4d9" />
+          <path d="M50 110 Q100 130 150 110" fill="#ff9bc9" />
+          <path d="M50 110 C50 110 60 130 75 110 C75 110 85 130 100 110 C100 110 115 130 125 110 C125 110 135 130 150 110"
+                stroke="#fff" stroke-width="10" stroke-linecap="round" fill="none" />
+          <rect x="95" y="70" width="10" height="40" fill="#64b5f6" />
+          <rect x="95" y="70" width="10" height="5" fill="#42a5f5" />
+
+          <g id="flame-group" class="candle-flame">
+            <path id="flame" d="M100 70 Q90 50 100 30 Q110 50 100 70" fill="#ffeb3b" />
+            <circle cx="100" cy="65" r="3" fill="#ff9800" opacity="0.6" />
+          </g>
+
+          <g id="smoke-group" opacity="0">
+            <path class="smoke" d="M100 70 Q90 50 95 30" stroke="#bdbdbd" stroke-width="2" fill="none" />
+            <path class="smoke" d="M100 70 Q110 50 105 25" stroke="#bdbdbd" stroke-width="2" fill="none" />
+          </g>
+        </svg>
+      </div>
+
+      <p class="mt-4 text-sm text-gray-400 italic" id="wish-text">(Tap the flame to blow it out)</p>
+    </div>
+  </section>
+
+  <section id="section-letter" class="hidden-section w-full max-w-3xl px-6 pb-20 z-10 relative">
+    <div class="paper-texture p-8 rounded-3xl transform transition-all duration-1000 translate-y-10 opacity-0" id="letter-content">
+      <div class="border-2 border-pink-200 p-5 rounded-2xl h-full">
+        <p class="text-right text-xs text-gray-400 mb-4" id="current-date"></p>
+        <h3 class="font-header text-2xl md:text-3xl text-deepRose mb-5">To my favorite person,</h3>
+
+        <p class="leading-relaxed text-gray-700 mb-4 text-lg">
+          If I could wrap every feeling I have for you into one little surprise, it would probably look a lot like this.
+        </p>
+        <p class="leading-relaxed text-gray-700 mb-4 text-lg">
+          You made my life softer, warmer, happier, and so much more beautiful. Even the smallest moments with you feel special to me.
+        </p>
+        <p class="leading-relaxed text-gray-700 mb-4 text-lg">
+          Thank you for being my peace, my smile, my comfort, and one of the best parts of my life.
+        </p>
+        <p class="leading-relaxed text-gray-700 text-lg">
+          I love you so much. More than I can explain. More than these little pages can hold. 💖
+        </p>
+
+        <p class="mt-8 font-header text-xl text-right text-pink-500">- Yours, always</p>
+
+        <div class="mt-12 pt-8 border-t border-pink-200 text-center">
+          <p class="text-sm text-gray-500 mb-4">Wait, there's one last thing...</p>
+          <button onclick="triggerFinalSurprise()" class="bg-gradient-to-r from-purple-400 to-pink-500 text-white font-bold py-3 px-8 rounded-full shadow-xl transform transition hover:scale-110 hover:rotate-2 animate-pulse">
+            🎁 Click for Surprise!
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const landing = document.getElementById('section-landing');
+    const celebration = document.getElementById('section-celebration');
+    const cakeSection = document.getElementById('section-cake');
+    const letterSection = document.getElementById('section-letter');
+
+    const photos = [
+      "photo1.jpg",
+      "photo2.jpg",
+      "photo3.jpg"
+    ];
+
+    const photosContainer = document.getElementById('photos-container');
+    const memoryLine = document.getElementById('memory-line');
+    const celebrateWrap = document.getElementById('celebrate-wrap');
+    const restartMsg = document.getElementById('restartMsg');
+
+    const firstSongId = "_mwqXnTEHSc";
+    const birthdaySongId = "73Hld4gpaPA";
+
+    let player;
+    let firstSongStarted = false;
+    let celebrationSongStarted = false;
+    let firstSongTimeout;
+    let birthdaySongTimeout;
+    let candleBlown = false;
+
+    const birthDate = new Date("2002-11-18");
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+
+    document.getElementById('age-span').innerText = age + "rd";
+    document.getElementById('current-date').innerText = today.toDateString();
+
+    gsap.to("#gift-box-container", {
+      y: -10,
+      duration: 1.5,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
+
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('yt-player', {
+        height: '1',
+        width: '1',
+        videoId: '',
+        playerVars: {
+          autoplay: 0,
+          controls: 0,
+          modestbranding: 1,
+          rel: 0
+        }
+      });
+    }
+
+    function openGift() {
+      const tl = gsap.timeline({
+        onComplete: () => {
+          landing.style.display = 'none';
+          initCelebration();
+          startFirstSong();
+          showPhotosOneByOne();
+        }
+      });
+
+      tl.to("#lid", { y: -20, rotation: -10, duration: 0.5 })
+        .to("#gift-box-container", { scale: 1.2, opacity: 0, duration: 0.5 }, "<")
+        .to(landing, { opacity: 0, duration: 0.5 }, "<");
+    }
+
+    function initCelebration() {
+      celebration.style.display = 'block';
+      gsap.to(celebration, { opacity: 1, duration: 1 });
+
+      const duration = 3 * 1000;
+      const animationEnd = Date.now() + duration;
+      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+      function randomInRange(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+
+      const interval = setInterval(function() {
+        const timeLeft = animationEnd - Date.now();
+        if (timeLeft <= 0) return clearInterval(interval);
+
+        const particleCount = 50 * (timeLeft / duration);
+        confetti(Object.assign({}, defaults, {
+          particleCount,
+          origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+        }));
+        confetti(Object.assign({}, defaults, {
+          particleCount,
+          origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+        }));
+      }, 250);
+    }
+
+    function startFirstSong() {
+      if (firstSongStarted || !player || typeof player.loadVideoById !== "function") return;
+      firstSongStarted = true;
+
+      player.loadVideoById(firstSongId);
+      player.playVideo();
+
+      clearTimeout(firstSongTimeout);
+      firstSongTimeout = setTimeout(() => {
+        player.stopVideo();
+      }, 75000);
+    }
+
+    function startBirthdayCelebration() {
+      if (celebrationSongStarted || !player || typeof player.loadVideoById !== "function") return;
+      celebrationSongStarted = true;
+
+      confetti({
+        particleCount: 180,
+        spread: 120,
+        origin: { y: 0.6 }
+      });
+
+      player.loadVideoById(birthdaySongId);
+      player.playVideo();
+
+      clearTimeout(birthdaySongTimeout);
+      birthdaySongTimeout = setTimeout(() => {
+        player.stopVideo();
+        restartMsg.classList.add("show");
+      }, 45000);
+    }
+
+    function createPhotoCard(photoPath, index) {
+      const wrapper = document.createElement("div");
+      wrapper.className = "photo-card";
+
+      wrapper.innerHTML = `
+        <div class="polaroid bg-white p-3 shadow-xl rounded-2xl">
+          <img src="${photoPath}" class="rounded-xl w-full h-80 object-cover" alt="Memory ${index + 1}">
+        </div>
+      `;
+
+      photosContainer.appendChild(wrapper);
+
+      setTimeout(() => {
+        wrapper.classList.add("show");
+      }, 100);
+    }
+
+    function showPhotosOneByOne(index = 0) {
+      if (index >= photos.length) {
+        setTimeout(() => {
+          memoryLine.classList.add("show");
+        }, 400);
+
+        setTimeout(() => {
+          celebrateWrap.classList.add("show");
+        }, 900);
+        return;
+      }
+
+      createPhotoCard(photos[index], index);
+
+      setTimeout(() => {
+        showPhotosOneByOne(index + 1);
+      }, 1200);
+    }
+
+    function scrollToCake() {
+      cakeSection.style.display = 'block';
+      gsap.to(cakeSection, { opacity: 1, duration: 1, delay: 0.2 });
+      cakeSection.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function blowCandle() {
+      if (candleBlown) return;
+      candleBlown = true;
+
+      const tl = gsap.timeline();
+
+      tl.to("#flame-group", {
+          scale: 0,
+          opacity: 0,
+          transformOrigin: "center bottom",
+          duration: 0.5
+        })
+        .to("#smoke-group", { opacity: 1, duration: 0.2 })
+        .to(".smoke", { y: -20, opacity: 0, duration: 1.5, stagger: 0.2 })
+        .to("#wish-text", { opacity: 0, duration: 0.2 }, "<")
+        .add(() => {
+          document.getElementById("wish-text").innerText = "Wish granted! ✨";
+          gsap.to("#wish-text", { opacity: 1, duration: 0.4 });
+        });
+
+      tl.add(() => {
+        showLetter();
+      }, "-=0.6");
+    }
+
+    function showLetter() {
+      letterSection.style.display = 'block';
+      letterSection.scrollIntoView({ behavior: 'smooth' });
+
+      gsap.to(letterSection, { opacity: 1, duration: 1 });
+      gsap.to("#letter-content", {
+        y: 0,
+        opacity: 1,
+        duration: 1.5,
+        ease: "power3.out",
+        delay: 0.4
+      });
+    }
+
+    function triggerFinalSurprise() {
+      const duration = 2500;
+      const end = Date.now() + duration;
+
+      (function frame() {
+        confetti({
+          particleCount: 7,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 },
+          colors: ['#ff5c8a', '#ffd700', '#ffffff']
+        });
+
+        confetti({
+          particleCount: 7,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 },
+          colors: ['#ff5c8a', '#ffd700', '#ffffff']
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      })();
+
+      setTimeout(() => {
+        alert("Okay baby... now you have to come collect the real surprise too 😚🎁");
+      }, 1200);
+    }
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "❤";
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      heart.style.fontSize = (16 + Math.random() * 20) + "px";
+      heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 6000);
+    }
+
+    function createStar() {
+      const star = document.createElement("div");
+      star.className = "star";
+      star.style.left = Math.random() * window.innerWidth + "px";
+      star.style.top = Math.random() * window.innerHeight + "px";
+      star.style.animationDuration = (1.5 + Math.random() * 2.5) + "s";
+      document.body.appendChild(star);
+
+      setTimeout(() => star.remove(), 5000);
+    }
+
+    const sparkleColors = ['#f9a8d4', '#fcd34d', '#c4b5fd', '#93c5fd', '#ffffff'];
+
+    function createSpark() {
+      const spark = document.createElement("div");
+      spark.className = "spark";
+      spark.style.left = Math.random() * window.innerWidth + "px";
+      spark.style.top = Math.random() * window.innerHeight + "px";
+      spark.style.color = sparkleColors[Math.floor(Math.random() * sparkleColors.length)];
+      spark.style.animationDuration = (1.5 + Math.random() * 2) + "s";
+      document.body.appendChild(spark);
+
+      setTimeout(() => spark.remove(), 5000);
+    }
+
+    function createLightDot() {
+      const dot = document.createElement("div");
+      dot.className = "light-dot";
+      dot.style.left = Math.random() * window.innerWidth + "px";
+      dot.style.top = (window.innerHeight - 40 + Math.random() * 80) + "px";
+      dot.style.color = sparkleColors[Math.floor(Math.random() * sparkleColors.length)];
+      document.body.appendChild(dot);
+
+      setTimeout(() => dot.remove(), 4000);
+    }
+
+    setInterval(createHeart, 700);
+    setInterval(createStar, 450);
+    setInterval(createSpark, 600);
+    setInterval(createLightDot, 350);
+  </script>
 </body>
 </html>
