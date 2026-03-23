@@ -38,7 +38,7 @@
     .polaroid {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       opacity: 0;
-      transform: translateY(25px) scale(0.98);
+      transform: translateY(40px);
     }
 
     .polaroid.show {
@@ -48,11 +48,11 @@
     @keyframes photoReveal {
       from {
         opacity: 0;
-        transform: translateY(25px) scale(0.98);
+        transform: translateY(40px);
       }
       to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateY(0);
       }
     }
 
@@ -86,13 +86,13 @@
     </h1>
 
     <p class="text-2xl md:text-3xl text-gray-700 mb-10">
-      You are turning <span class="font-bold text-pink-500">23th</span> today! ✨
+      You are turning <span class="font-bold text-pink-500">23rd</span> today! ✨
     </p>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-6" id="photos-container"></div>
 
     <p class="text-xl md:text-2xl text-rose-500 font-semibold mb-12">
-      Oh deen bhi kyah deen thya 💖
+      Oh deen bhi kya deen thya 💖
     </p>
 
     <p class="text-2xl md:text-3xl text-gray-700 mb-4">I got you a cake...</p>
@@ -123,18 +123,26 @@
 
     const container = document.getElementById("photos-container");
 
-    photos.forEach((p, i) => {
+    function addPhotoOneByOne(index) {
+      if (index >= photos.length) return;
+
       const div = document.createElement("div");
       div.className = "polaroid bg-white p-3 shadow-xl rounded-2xl";
       div.innerHTML = `
-        <img src="${p}" class="rounded-xl w-full h-72 object-cover" alt="Memory ${i + 1}">
+        <img src="${photos[index]}" class="rounded-xl w-full h-72 object-cover" alt="Memory ${index + 1}">
       `;
       container.appendChild(div);
 
       setTimeout(() => {
         div.classList.add("show");
-      }, i * 900);
-    });
+      }, 100);
+
+      setTimeout(() => {
+        addPhotoOneByOne(index + 1);
+      }, 1200);
+    }
+
+    addPhotoOneByOne(0);
 
     function createHeart() {
       const heart = document.createElement("div");
