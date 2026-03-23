@@ -1,46 +1,141 @@
-\<script>
-  const photos = [
-    "photo1.jpg",
-    "photo2.jpg",
-    "photo3.jpg"
-  ];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday ❤️</title>
 
-  const container = document.getElementById("photos-container");
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-  function addPhotoOneByOne(index) {
-    if (index >= photos.length) return;
+<style>
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #fff0f5;
+  overflow-x: hidden;
+}
 
-    const div = document.createElement("div");
-    div.className = "polaroid bg-white p-3 shadow-xl rounded-2xl";
-    div.innerHTML = `
-      <img src="${photos[index]}" class="rounded-xl w-full h-72 object-cover" alt="Memory ${index + 1}">
-    `;
-    container.appendChild(div);
+.title-font { font-family: 'Pacifico', cursive; }
 
-    setTimeout(() => {
-      div.classList.add("show");
-    }, 100);
+.hidden { display:none; }
 
-    setTimeout(() => {
-      addPhotoOneByOne(index + 1);
-    }, 1200);
+.photo {
+  opacity:0;
+  transform: translateY(60px);
+}
+
+.photo.show {
+  animation: slide 0.8s ease forwards;
+}
+
+@keyframes slide {
+  to {
+    opacity:1;
+    transform: translateY(0);
+  }
+}
+</style>
+</head>
+
+<body class="flex flex-col items-center justify-center min-h-screen text-center">
+
+<!-- LANDING -->
+<div id="landing">
+  <h1 class="title-font text-5xl text-pink-500 mb-6">Hey Baby...</h1>
+  <p class="mb-6">Tap the gift 🎁</p>
+
+  <div onclick="openGift()" class="text-6xl cursor-pointer">🎁</div>
+</div>
+
+<!-- CELEBRATION -->
+<div id="main" class="hidden max-w-4xl px-4">
+
+  <h1 class="title-font text-5xl text-pink-500 mb-4">Happy Birthday!</h1>
+  <p class="mb-6">You are turning <b>23rd</b> today ✨</p>
+
+  <!-- MUSIC BUTTON -->
+  <button onclick="playMusic()" class="mb-6 bg-pink-500 text-white px-6 py-3 rounded-full">
+    Start Celebration 🎶
+  </button>
+
+  <!-- YOUTUBE (hidden) -->
+  <iframe id="yt"
+    width="0" height="0"
+    src=""
+    allow="autoplay"
+  ></iframe>
+
+  <!-- MESSAGE -->
+  <div class="bg-white p-6 rounded-xl shadow mb-10 text-left">
+    <p class="text-center font-semibold text-pink-500 mb-4">
+      To my Paran Pyari 💌
+    </p>
+
+    Happy Birthday to the girl who holds such a special place in my heart.🥺🤍<br><br>
+
+    Today is your day, but somehow I feel grateful too…<br>
+    Grateful because in this huge world, I got someone like you.💘<br><br>
+
+    Thank you for coming into my life and making everything feel lighter.<br>
+    Thank you for every smile you gave me.🥺<br>
+    Thank you for every laugh, every care, every moment.🤍🧸<br><br>
+
+    You are the person my heart feels safe with.😭<br><br>
+
+    I love you so much, paran pyari.🌍<br>
+    More deeply than words can hold.✨<br><br>
+
+    <p class="text-center font-semibold text-pink-500 mt-4">
+      Happppppppppy Birthday, buduuu 🎂💫
+    </p>
+  </div>
+
+  <!-- PHOTOS -->
+  <div id="photos" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4"></div>
+
+  <!-- LINE -->
+  <p id="line" class="text-pink-500 font-semibold text-xl opacity-0">
+    Oh deen bhi kya deen thya 💖
+  </p>
+
+</div>
+
+<script>
+function openGift(){
+  document.getElementById("landing").style.display="none";
+  document.getElementById("main").classList.remove("hidden");
+
+  showPhotos();
+}
+
+function playMusic(){
+  document.getElementById("yt").src =
+  "https://www.youtube.com/embed/73Hld4gpaPA?autoplay=1&loop=1&playlist=73Hld4gpaPA";
+}
+
+const photos = ["photo1.jpg","photo2.jpg","photo3.jpg"];
+const container = document.getElementById("photos");
+
+function showPhotos(i=0){
+  if(i>=photos.length){
+    setTimeout(()=>{
+      document.getElementById("line").style.opacity="1";
+    },500);
+    return;
   }
 
-  addPhotoOneByOne(0);
+  const div = document.createElement("div");
+  div.className="photo bg-white p-2 rounded-xl shadow";
 
-  function createHeart() {
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "❤";
-    heart.style.left = Math.random() * window.innerWidth + "px";
-    heart.style.animationDuration = (3 + Math.random() * 3) + "s";
-    heart.style.fontSize = (16 + Math.random() * 20) + "px";
-    document.body.appendChild(heart);
+  div.innerHTML = `<img src="${photos[i]}" class="w-full h-72 object-cover rounded">`;
 
-    setTimeout(() => {
-      heart.remove();
-    }, 6000);
-  }
+  container.appendChild(div);
 
-  setInterval(createHeart, 500);
+  setTimeout(()=> div.classList.add("show"),100);
+
+  setTimeout(()=> showPhotos(i+1),1200);
+}
 </script>
+
+</body>
+</html>
