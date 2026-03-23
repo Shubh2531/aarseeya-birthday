@@ -1,165 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to bottom right, #f8d7e3, #f3d9ff);
-      overflow-x: hidden;
-    }
+\<script>
+  const photos = [
+    "photo1.jpg",
+    "photo2.jpg",
+    "photo3.jpg"
+  ];
 
-    .title-font {
-      font-family: 'Pacifico', cursive;
-    }
+  const container = document.getElementById("photos-container");
 
-    .floating {
-      animation: float 3s ease-in-out infinite;
-    }
+  function addPhotoOneByOne(index) {
+    if (index >= photos.length) return;
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-    }
+    const div = document.createElement("div");
+    div.className = "polaroid bg-white p-3 shadow-xl rounded-2xl";
+    div.innerHTML = `
+      <img src="${photos[index]}" class="rounded-xl w-full h-72 object-cover" alt="Memory ${index + 1}">
+    `;
+    container.appendChild(div);
 
-    .fade-in {
-      animation: fadeIn 1.2s ease-in forwards;
-    }
+    setTimeout(() => {
+      div.classList.add("show");
+    }, 100);
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    setTimeout(() => {
+      addPhotoOneByOne(index + 1);
+    }, 1200);
+  }
 
-    .polaroid {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      opacity: 0;
-      transform: translateY(40px);
-    }
+  addPhotoOneByOne(0);
 
-    .polaroid.show {
-      animation: photoReveal 0.9s ease forwards;
-    }
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+    heart.style.fontSize = (16 + Math.random() * 20) + "px";
+    document.body.appendChild(heart);
 
-    @keyframes photoReveal {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+    setTimeout(() => {
+      heart.remove();
+    }, 6000);
+  }
 
-    .polaroid:hover {
-      transform: scale(1.03);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-    }
-
-    .heart {
-      position: fixed;
-      color: #ff5c8a;
-      font-size: 20px;
-      animation: fall linear forwards;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    @keyframes fall {
-      to {
-        transform: translateY(100vh);
-        opacity: 0;
-      }
-    }
-  </style>
-</head>
-<body class="min-h-screen flex flex-col items-center justify-start text-center px-4 py-10 relative">
-
-  <div class="max-w-4xl w-full z-10 fade-in">
-    <h1 class="title-font text-5xl md:text-7xl text-rose-400 floating mb-4">
-      Happy Birthday!
-    </h1>
-
-    <p class="text-2xl md:text-3xl text-gray-700 mb-10">
-      You are turning <span class="font-bold text-pink-500">23rd</span> today! ✨
-    </p>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-6" id="photos-container"></div>
-
-    <p class="text-xl md:text-2xl text-rose-500 font-semibold mb-12">
-      Oh deen bhi kya deen thya 💖
-    </p>
-
-    <p class="text-2xl md:text-3xl text-gray-700 mb-4">I got you a cake...</p>
-
-    <a href="#cake-section" class="inline-block bg-pink-500 hover:bg-pink-600 text-white font-semibold px-8 py-4 rounded-full shadow-lg transition">
-      See the Cake ↓
-    </a>
-  </div>
-
-  <div id="cake-section" class="mt-28 z-10 fade-in">
-    <h2 class="title-font text-4xl md:text-5xl text-rose-400 mb-8">Your Cake 🎂</h2>
-
-    <div class="flex justify-center">
-      <img
-        src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80"
-        alt="Birthday Cake"
-        class="w-80 md:w-[420px] rounded-3xl shadow-2xl"
-      />
-    </div>
-  </div>
-
-  <script>
-    const photos = [
-      "images/photo1.jpg",
-      "images/photo2.jpg",
-      "images/photo3.jpg"
-    ];
-
-    const container = document.getElementById("photos-container");
-
-    function addPhotoOneByOne(index) {
-      if (index >= photos.length) return;
-
-      const div = document.createElement("div");
-      div.className = "polaroid bg-white p-3 shadow-xl rounded-2xl";
-      div.innerHTML = `
-        <img src="${photos[index]}" class="rounded-xl w-full h-72 object-cover" alt="Memory ${index + 1}">
-      `;
-      container.appendChild(div);
-
-      setTimeout(() => {
-        div.classList.add("show");
-      }, 100);
-
-      setTimeout(() => {
-        addPhotoOneByOne(index + 1);
-      }, 1200);
-    }
-
-    addPhotoOneByOne(0);
-
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.classList.add("heart");
-      heart.innerHTML = "❤";
-      heart.style.left = Math.random() * window.innerWidth + "px";
-      heart.style.animationDuration = (3 + Math.random() * 3) + "s";
-      heart.style.fontSize = (16 + Math.random() * 20) + "px";
-      document.body.appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, 6000);
-    }
-
-    setInterval(createHeart, 500);
-  </script>
-
-</body>
-</html>
+  setInterval(createHeart, 500);
+</script>
