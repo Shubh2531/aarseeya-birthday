@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday My Paran Pyari 💖</title>
+  <title>Happy Birthday Aarseeya 💖</title>
 
-  <meta property="og:title" content="Happy Birthday Baby! ❤️">
-  <meta property="og:description" content="I have a sweet little surprise for you. Tap to open!">
+  <meta property="og:title" content="Happy Birthday Aarseeya! ❤️">
+  <meta property="og:description" content="A sweet surprise made with love 💌">
   <meta property="og:image" content="https://img.icons8.com/clouds/500/000000/gift.png">
 
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&family=Pacifico&display=swap" rel="stylesheet">
@@ -14,26 +14,6 @@
   <script src="https://www.youtube.com/iframe_api"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            pastelPink: '#ffd1dc',
-            pastelCream: '#fff7fb',
-            deepRose: '#ff5c8a',
-            softGold: '#ffe58f',
-            softLavender: '#e9d5ff'
-          },
-          fontFamily: {
-            header: ['Pacifico', 'cursive'],
-            body: ['Nunito', 'sans-serif']
-          }
-        }
-      }
-    }
-  </script>
 
   <style>
     html { scroll-behavior: smooth; }
@@ -51,9 +31,20 @@
       opacity: 0;
     }
 
+    .title-font {
+      font-family: 'Pacifico', cursive;
+    }
+
+    .glass {
+      background: rgba(255,255,255,0.58);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.55);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    }
+
     .blob {
       position: fixed;
-      filter: blur(50px);
+      filter: blur(55px);
       z-index: -4;
       opacity: 0.45;
       animation: floatBlob 11s infinite ease-in-out;
@@ -64,13 +55,6 @@
       50% { transform: translate(25px, -25px); }
     }
 
-    .glass {
-      background: rgba(255,255,255,0.55);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.55);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-    }
-
     .gift-bounce {
       animation: bounceGift 1.8s infinite ease-in-out;
     }
@@ -78,6 +62,10 @@
     @keyframes bounceGift {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
+    }
+
+    .countdown-box {
+      min-width: 78px;
     }
 
     .photo-card {
@@ -111,7 +99,9 @@
 
     .memory-line,
     .celebrate-wrap,
-    .restart-note {
+    .restart-note,
+    .love-reveal,
+    .finale-wrap {
       opacity: 0;
       transform: translateY(14px);
       transition: all 1s ease;
@@ -119,9 +109,42 @@
 
     .memory-line.show,
     .celebrate-wrap.show,
-    .restart-note.show {
+    .restart-note.show,
+    .love-reveal.show,
+    .finale-wrap.show {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    .love-glow {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(2.5rem, 8vw, 5.5rem);
+      color: #ff4f87;
+      text-shadow:
+        0 0 8px rgba(255,79,135,0.8),
+        0 0 16px rgba(255,79,135,0.75),
+        0 0 28px rgba(255,79,135,0.55),
+        0 0 48px rgba(255,182,193,0.6);
+      animation: glowPulse 2s infinite ease-in-out;
+    }
+
+    @keyframes glowPulse {
+      0%, 100% {
+        transform: scale(1);
+        text-shadow:
+          0 0 8px rgba(255,79,135,0.8),
+          0 0 16px rgba(255,79,135,0.75),
+          0 0 28px rgba(255,79,135,0.55),
+          0 0 48px rgba(255,182,193,0.6);
+      }
+      50% {
+        transform: scale(1.04);
+        text-shadow:
+          0 0 10px rgba(255,79,135,1),
+          0 0 22px rgba(255,79,135,0.9),
+          0 0 38px rgba(255,79,135,0.7),
+          0 0 60px rgba(255,182,193,0.75);
+      }
     }
 
     .paper-texture {
@@ -197,12 +220,26 @@
     }
 
     .pulse-soft {
-      animation: pulseSoft 2s infinite ease-in-out;
+      animation: pulseSoft 1.15s infinite ease-in-out;
     }
 
     @keyframes pulseSoft {
       0%,100% { transform: scale(1); }
-      50% { transform: scale(1.03); }
+      30% { transform: scale(1.05); }
+      60% { transform: scale(0.98); }
+    }
+
+    .beat-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 9999px;
+      border: 3px solid rgba(255,92,138,0.45);
+      animation: beatRing 1.15s infinite ease-out;
+    }
+
+    @keyframes beatRing {
+      0% { transform: scale(0.9); opacity: 0.8; }
+      100% { transform: scale(1.35); opacity: 0; }
     }
 
     .fade-up {
@@ -226,13 +263,33 @@
   </div>
 
   <section id="section-landing" class="text-center z-10 w-full max-w-md px-4 min-h-screen flex flex-col items-center justify-center">
-    <p class="text-pink-500 font-bold text-lg mb-3">A little teasing surprise for my baby 💌</p>
-    <h1 class="font-header text-4xl md:text-6xl text-deepRose mb-6">
-      Hey Baby...
-    </h1>
-    <p class="text-lg text-gray-500 mb-8">
-      I have a little surprise for you... but only if you open the gift first 😚
+    <p class="text-pink-500 font-bold text-lg mb-3">A sweet little surprise for Aarseeya 💌</p>
+    <h1 class="title-font text-4xl md:text-6xl text-pink-500 mb-4">Hey Aarseeya...</h1>
+    <p class="text-lg text-gray-500 mb-6">
+      March 25 is your day ✨
     </p>
+
+    <div class="glass rounded-3xl p-4 mb-8 w-full max-w-sm">
+      <p class="text-sm text-gray-500 mb-3">Countdown to your birthday 💖</p>
+      <div class="flex items-center justify-center gap-3 flex-wrap">
+        <div class="countdown-box bg-white rounded-2xl p-3 shadow">
+          <div id="days" class="text-2xl font-extrabold text-pink-500">00</div>
+          <div class="text-xs text-gray-500">Days</div>
+        </div>
+        <div class="countdown-box bg-white rounded-2xl p-3 shadow">
+          <div id="hours" class="text-2xl font-extrabold text-pink-500">00</div>
+          <div class="text-xs text-gray-500">Hours</div>
+        </div>
+        <div class="countdown-box bg-white rounded-2xl p-3 shadow">
+          <div id="minutes" class="text-2xl font-extrabold text-pink-500">00</div>
+          <div class="text-xs text-gray-500">Minutes</div>
+        </div>
+        <div class="countdown-box bg-white rounded-2xl p-3 shadow">
+          <div id="seconds" class="text-2xl font-extrabold text-pink-500">00</div>
+          <div class="text-xs text-gray-500">Seconds</div>
+        </div>
+      </div>
+    </div>
 
     <div id="gift-box-container" class="gift-bounce cursor-pointer mx-auto w-52 h-52 relative transform transition-transform hover:scale-105" onclick="openGift()">
       <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-full drop-shadow-xl">
@@ -248,9 +305,9 @@
 
   <section id="section-celebration" class="hidden-section w-full max-w-5xl mx-auto px-4 pb-20 pt-10 z-10 relative">
     <div class="text-center mb-8 fade-up">
-      <h2 class="font-header text-5xl md:text-7xl text-deepRose mb-2">Happy Birthday!</h2>
+      <h2 class="title-font text-5xl md:text-7xl text-pink-500 mb-2">Happy Birthday Aarseeya! 🎂</h2>
       <p class="text-xl md:text-2xl text-gray-600 mb-4">
-        You are turning <span id="age-span" class="font-bold text-pink-500"></span> today! ✨
+        March 25 — your beautiful day ✨
       </p>
       <p class="text-lg text-gray-500 max-w-2xl mx-auto">
         And yes... this whole little world right here is just for you, my paran pyari 💖
@@ -284,14 +341,14 @@
         </p>
 
         <p class="mb-2">
-          I love you so much, paran pyari.🌍<br>
+          I love you so much, Aarseeya.🌍<br>
           More deeply than these words can hold.<br>
           More truly than I have ever loved before.<br>
           And on your birthday, I just want you to know that your happiness matters so much to me.✨
         </p>
 
         <p class="text-center text-xl md:text-2xl font-bold text-pink-500 mt-6">
-          Happppppppppy Birthday, buduuu 🎂💫
+          Happppppppppy Birthday buduuu 🎂💫
         </p>
       </div>
     </div>
@@ -324,10 +381,11 @@
   </section>
 
   <section id="section-cake" class="hidden-section w-full max-w-md px-4 py-20 text-center z-10 relative">
-    <h2 class="font-header text-3xl md:text-5xl text-gray-700 mb-8">Make a wish... 🎂</h2>
+    <h2 class="title-font text-3xl md:text-5xl text-gray-700 mb-8">Make a wish... 🎂</h2>
 
     <div class="glass rounded-3xl p-6">
       <div class="relative w-64 h-64 mx-auto cursor-pointer pulse-soft" onclick="blowCandle()">
+        <div class="beat-ring"></div>
         <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
           <ellipse cx="100" cy="170" rx="90" ry="20" fill="#e0e0e0" />
           <rect x="50" y="110" width="100" height="60" rx="5" fill="#f8b4d9" />
@@ -350,6 +408,7 @@
       </div>
 
       <p class="mt-4 text-sm text-gray-400 italic" id="wish-text">(Tap the flame to blow it out)</p>
+      <p class="mt-2 text-pink-500 text-sm">Heartbeat mode 💓</p>
     </div>
   </section>
 
@@ -357,7 +416,7 @@
     <div class="paper-texture p-8 rounded-3xl transform transition-all duration-1000 translate-y-10 opacity-0" id="letter-content">
       <div class="border-2 border-pink-200 p-5 rounded-2xl h-full">
         <p class="text-right text-xs text-gray-400 mb-4" id="current-date"></p>
-        <h3 class="font-header text-2xl md:text-3xl text-deepRose mb-5">To my favorite person,</h3>
+        <h3 class="title-font text-2xl md:text-3xl text-pink-500 mb-5">To my favorite person,</h3>
 
         <p class="leading-relaxed text-gray-700 mb-4 text-lg">
           If I could wrap every feeling I have for you into one little surprise, it would probably look a lot like this.
@@ -372,12 +431,16 @@
           I love you so much. More than I can explain. More than these little pages can hold. 💖
         </p>
 
-        <p class="mt-8 font-header text-xl text-right text-pink-500">- Yours, always</p>
+        <div id="love-reveal" class="love-reveal text-center mt-10">
+          <div class="love-glow">I LOVE YOU</div>
+        </div>
 
-        <div class="mt-12 pt-8 border-t border-pink-200 text-center">
+        <p class="mt-8 title-font text-xl text-right text-pink-500">- Yours, always</p>
+
+        <div id="finale-wrap" class="finale-wrap mt-12 pt-8 border-t border-pink-200 text-center">
           <p class="text-sm text-gray-500 mb-4">Wait, there's one last thing...</p>
           <button onclick="triggerFinalSurprise()" class="bg-gradient-to-r from-purple-400 to-pink-500 text-white font-bold py-3 px-8 rounded-full shadow-xl transform transition hover:scale-110 hover:rotate-2 animate-pulse">
-            🎁 Click for Surprise!
+            🎁 Fireworks Finale!
           </button>
         </div>
       </div>
@@ -401,7 +464,7 @@
     const celebrateWrap = document.getElementById('celebrate-wrap');
     const restartMsg = document.getElementById('restartMsg');
 
-    const firstSongId = "_mwqXnTEHSc";
+    const firstSongId = "QXJyMpxd210";
     const birthdaySongId = "73Hld4gpaPA";
 
     let player;
@@ -410,18 +473,37 @@
     let firstSongTimeout;
     let birthdaySongTimeout;
     let candleBlown = false;
+    let heartBeatAudioStarted = false;
 
-    const birthDate = new Date("2002-11-18");
-    const today = new Date();
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const m = today.getMonth() - birthDate.getMonth();
+    document.getElementById('current-date').innerText = new Date().toDateString();
 
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
+    function getNextBirthday() {
+      const now = new Date();
+      let target = new Date(now.getFullYear(), 2, 25, 0, 0, 0); // March is month 2
+      if (now > target) {
+        target = new Date(now.getFullYear() + 1, 2, 25, 0, 0, 0);
+      }
+      return target;
     }
 
-    document.getElementById('age-span').innerText = age + "rd";
-    document.getElementById('current-date').innerText = today.toDateString();
+    function updateCountdown() {
+      const now = new Date();
+      const target = getNextBirthday();
+      const diff = target - now;
+
+      const days = Math.max(0, Math.floor(diff / (1000 * 60 * 60 * 24)));
+      const hours = Math.max(0, Math.floor((diff / (1000 * 60 * 60)) % 24));
+      const minutes = Math.max(0, Math.floor((diff / (1000 * 60)) % 60));
+      const seconds = Math.max(0, Math.floor((diff / 1000) % 60));
+
+      document.getElementById('days').innerText = String(days).padStart(2, '0');
+      document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+      document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+      document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
 
     gsap.to("#gift-box-container", {
       y: -10,
@@ -445,6 +527,27 @@
       });
     }
 
+    function fadeOutAndStop(duration = 6000) {
+      if (!player || typeof player.getVolume !== "function") return;
+
+      let volume = player.getVolume();
+      const steps = 20;
+      const stepTime = duration / steps;
+      const stepAmount = volume / steps;
+
+      const fadeInterval = setInterval(() => {
+        volume -= stepAmount;
+
+        if (volume <= 0) {
+          clearInterval(fadeInterval);
+          player.stopVideo();
+          player.setVolume(100);
+        } else {
+          player.setVolume(Math.max(0, Math.round(volume)));
+        }
+      }, stepTime);
+    }
+
     function openGift() {
       const tl = gsap.timeline({
         onComplete: () => {
@@ -464,7 +567,7 @@
       celebration.style.display = 'block';
       gsap.to(celebration, { opacity: 1, duration: 1 });
 
-      const duration = 3 * 1000;
+      const duration = 3000;
       const animationEnd = Date.now() + duration;
       const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 
@@ -493,12 +596,13 @@
       firstSongStarted = true;
 
       player.loadVideoById(firstSongId);
+      player.setVolume(100);
       player.playVideo();
 
       clearTimeout(firstSongTimeout);
       firstSongTimeout = setTimeout(() => {
-        player.stopVideo();
-      }, 75000);
+        fadeOutAndStop(6000);
+      }, 100000);
     }
 
     function startBirthdayCelebration() {
@@ -512,11 +616,12 @@
       });
 
       player.loadVideoById(birthdaySongId);
+      player.setVolume(100);
       player.playVideo();
 
       clearTimeout(birthdaySongTimeout);
       birthdaySongTimeout = setTimeout(() => {
-        player.stopVideo();
+        fadeOutAndStop(5000);
         restartMsg.classList.add("show");
       }, 45000);
     }
@@ -561,6 +666,44 @@
       cakeSection.style.display = 'block';
       gsap.to(cakeSection, { opacity: 1, duration: 1, delay: 0.2 });
       cakeSection.scrollIntoView({ behavior: 'smooth' });
+      if (!heartBeatAudioStarted) startHeartbeatSound();
+    }
+
+    let heartbeatCtx;
+    function startHeartbeatSound() {
+      heartBeatAudioStarted = true;
+      try {
+        heartbeatCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function beatOnce(time, gainAmount = 0.45) {
+          const osc = heartbeatCtx.createOscillator();
+          const gain = heartbeatCtx.createGain();
+
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(75, time);
+          osc.frequency.exponentialRampToValueAtTime(48, time + 0.08);
+
+          gain.gain.setValueAtTime(0.0001, time);
+          gain.gain.exponentialRampToValueAtTime(gainAmount, time + 0.01);
+          gain.gain.exponentialRampToValueAtTime(0.0001, time + 0.15);
+
+          osc.connect(gain);
+          gain.connect(heartbeatCtx.destination);
+
+          osc.start(time);
+          osc.stop(time + 0.18);
+        }
+
+        function loopHeartbeat() {
+          if (!heartBeatAudioStarted) return;
+          const now = heartbeatCtx.currentTime;
+          beatOnce(now, 0.35);
+          beatOnce(now + 0.23, 0.28);
+          setTimeout(loopHeartbeat, 1150);
+        }
+
+        loopHeartbeat();
+      } catch (e) {}
     }
 
     function blowCandle() {
@@ -600,37 +743,47 @@
         ease: "power3.out",
         delay: 0.4
       });
+
+      setTimeout(() => {
+        document.getElementById("love-reveal").classList.add("show");
+      }, 1200);
+
+      setTimeout(() => {
+        document.getElementById("finale-wrap").classList.add("show");
+      }, 2200);
+    }
+
+    function fireworkBurst(count = 6) {
+      for (let i = 0; i < count; i++) {
+        setTimeout(() => {
+          confetti({
+            particleCount: 120,
+            spread: 90,
+            startVelocity: 45,
+            scalar: 1.15,
+            origin: {
+              x: Math.random() * 0.8 + 0.1,
+              y: Math.random() * 0.45 + 0.05
+            }
+          });
+        }, i * 350);
+      }
     }
 
     function triggerFinalSurprise() {
-      const duration = 2500;
-      const end = Date.now() + duration;
-
-      (function frame() {
-        confetti({
-          particleCount: 7,
-          angle: 60,
-          spread: 55,
-          origin: { x: 0 },
-          colors: ['#ff5c8a', '#ffd700', '#ffffff']
-        });
-
-        confetti({
-          particleCount: 7,
-          angle: 120,
-          spread: 55,
-          origin: { x: 1 },
-          colors: ['#ff5c8a', '#ffd700', '#ffffff']
-        });
-
-        if (Date.now() < end) {
-          requestAnimationFrame(frame);
-        }
-      })();
+      fireworkBurst(10);
 
       setTimeout(() => {
-        alert("Okay baby... now you have to come collect the real surprise too 😚🎁");
-      }, 1200);
+        confetti({
+          particleCount: 250,
+          spread: 160,
+          origin: { y: 0.6 }
+        });
+      }, 1800);
+
+      setTimeout(() => {
+        alert("I love you so much, Aarseeya 💖🎆");
+      }, 2600);
     }
 
     function createHeart() {
@@ -641,7 +794,6 @@
       heart.style.fontSize = (16 + Math.random() * 20) + "px";
       heart.style.animationDuration = (3 + Math.random() * 3) + "s";
       document.body.appendChild(heart);
-
       setTimeout(() => heart.remove(), 6000);
     }
 
@@ -652,7 +804,6 @@
       star.style.top = Math.random() * window.innerHeight + "px";
       star.style.animationDuration = (1.5 + Math.random() * 2.5) + "s";
       document.body.appendChild(star);
-
       setTimeout(() => star.remove(), 5000);
     }
 
@@ -666,7 +817,6 @@
       spark.style.color = sparkleColors[Math.floor(Math.random() * sparkleColors.length)];
       spark.style.animationDuration = (1.5 + Math.random() * 2) + "s";
       document.body.appendChild(spark);
-
       setTimeout(() => spark.remove(), 5000);
     }
 
@@ -677,7 +827,6 @@
       dot.style.top = (window.innerHeight - 40 + Math.random() * 80) + "px";
       dot.style.color = sparkleColors[Math.floor(Math.random() * sparkleColors.length)];
       document.body.appendChild(dot);
-
       setTimeout(() => dot.remove(), 4000);
     }
 
