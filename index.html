@@ -5,25 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Happy Birthday Aarseeya 💖</title>
 
-  <meta property="og:title" content="Happy Birthday Aarseeya! ❤️">
-  <meta property="og:description" content="A sweet surprise made with love 💌">
-  <meta property="og:image" content="https://img.icons8.com/clouds/500/000000/gift.png">
-
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&family=Pacifico&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://www.youtube.com/iframe_api"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <style>
     html { scroll-behavior: smooth; }
 
     body {
-      background: linear-gradient(135deg, #fff0f5 0%, #fdf2ff 45%, #fff7ed 100%);
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #fff0f5, #f3d9ff);
       overflow-x: hidden;
-      font-family: 'Nunito', sans-serif;
-      min-height: 100vh;
-      position: relative;
+      color: #374151;
     }
 
     .hidden-section {
@@ -32,40 +25,14 @@
     }
 
     .title-font {
-      font-family: 'Pacifico', cursive;
+      font-family: cursive;
     }
 
     .glass {
-      background: rgba(255,255,255,0.58);
+      background: rgba(255,255,255,0.55);
       backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.55);
+      border: 1px solid rgba(255,255,255,0.45);
       box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-    }
-
-    .blob {
-      position: fixed;
-      filter: blur(55px);
-      z-index: -4;
-      opacity: 0.45;
-      animation: floatBlob 11s infinite ease-in-out;
-    }
-
-    @keyframes floatBlob {
-      0%, 100% { transform: translate(0, 0); }
-      50% { transform: translate(25px, -25px); }
-    }
-
-    .gift-bounce {
-      animation: bounceGift 1.8s infinite ease-in-out;
-    }
-
-    @keyframes bounceGift {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    .countdown-box {
-      min-width: 78px;
     }
 
     .photo-card {
@@ -74,584 +41,381 @@
     }
 
     .photo-card.show {
-      animation: photoRise 0.9s ease forwards;
+      animation: rise 0.9s ease forwards;
     }
 
-    @keyframes photoRise {
-      from {
-        opacity: 0;
-        transform: translateY(60px) scale(0.97);
-      }
+    @keyframes rise {
       to {
         opacity: 1;
         transform: translateY(0) scale(1);
       }
     }
 
-    .polaroid {
-      transition: transform 0.35s ease, box-shadow 0.35s ease;
-    }
-
-    .polaroid:hover {
-      transform: translateY(-6px) scale(1.03) rotate(1deg);
-      box-shadow: 0 18px 35px rgba(0,0,0,0.16);
-    }
-
     .memory-line,
     .celebrate-wrap,
     .restart-note,
-    .love-reveal,
-    .finale-wrap {
+    .cake-btn-wrap {
       opacity: 0;
-      transform: translateY(14px);
+      transform: translateY(15px);
       transition: all 1s ease;
     }
 
     .memory-line.show,
     .celebrate-wrap.show,
     .restart-note.show,
-    .love-reveal.show,
-    .finale-wrap.show {
+    .cake-btn-wrap.show {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .love-glow {
-      font-family: 'Pacifico', cursive;
-      font-size: clamp(2.5rem, 8vw, 5.5rem);
-      color: #ff4f87;
-      text-shadow:
-        0 0 8px rgba(255,79,135,0.8),
-        0 0 16px rgba(255,79,135,0.75),
-        0 0 28px rgba(255,79,135,0.55),
-        0 0 48px rgba(255,182,193,0.6);
-      animation: glowPulse 2s infinite ease-in-out;
-    }
-
-    @keyframes glowPulse {
-      0%, 100% {
-        transform: scale(1);
-        text-shadow:
-          0 0 8px rgba(255,79,135,0.8),
-          0 0 16px rgba(255,79,135,0.75),
-          0 0 28px rgba(255,79,135,0.55),
-          0 0 48px rgba(255,182,193,0.6);
-      }
-      50% {
-        transform: scale(1.04);
-        text-shadow:
-          0 0 10px rgba(255,79,135,1),
-          0 0 22px rgba(255,79,135,0.9),
-          0 0 38px rgba(255,79,135,0.7),
-          0 0 60px rgba(255,182,193,0.75);
-      }
-    }
-
-    .paper-texture {
-      background-image:
-        linear-gradient(to right, rgba(255,255,255,0.88), rgba(255,255,255,0.88)),
-        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.1'/%3E%3C/svg%3E");
-      box-shadow: 0 10px 30px -5px rgba(0,0,0,0.1);
-    }
-
-    .heart, .star, .spark, .light-dot {
+    .heart-fall {
       position: fixed;
-      pointer-events: none;
-      z-index: -2;
-    }
-
-    .heart {
       color: #ff5c8a;
-      text-shadow: 0 0 10px rgba(255,255,255,0.8);
-      animation: fallDown linear forwards;
+      pointer-events: none;
+      z-index: 0;
+      animation: fall linear forwards;
     }
 
-    @keyframes fallDown {
+    @keyframes fall {
       from { transform: translateY(-10vh); opacity: 1; }
       to { transform: translateY(110vh); opacity: 0; }
     }
 
-    .star {
-      width: 7px;
-      height: 7px;
-      background: white;
-      border-radius: 9999px;
-      box-shadow: 0 0 10px white, 0 0 20px #f9a8d4;
-      animation: twinkle 2s infinite ease-in-out;
-      opacity: 0.8;
-    }
-
     .spark {
+      position: fixed;
       width: 10px;
       height: 10px;
-      border-radius: 9999px;
-      animation: twinkle 1.8s infinite ease-in-out;
-      box-shadow: 0 0 10px currentColor, 0 0 22px currentColor;
-      opacity: 0.9;
-    }
-
-    .light-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 9999px;
-      animation: floatLight 4s linear forwards;
-      box-shadow: 0 0 12px currentColor, 0 0 26px currentColor;
-      opacity: 0.85;
+      border-radius: 999px;
+      pointer-events: none;
+      z-index: 0;
+      box-shadow: 0 0 10px currentColor, 0 0 25px currentColor;
+      animation: twinkle 2s infinite ease-in-out;
     }
 
     @keyframes twinkle {
-      0%, 100% { transform: scale(0.7); opacity: 0.35; }
-      50% { transform: scale(1.35); opacity: 1; }
+      0%,100% { transform: scale(0.7); opacity: 0.35; }
+      50% { transform: scale(1.4); opacity: 1; }
     }
 
-    @keyframes floatLight {
-      from { transform: translateY(0); opacity: .95; }
-      to { transform: translateY(-120px); opacity: 0; }
+    .heartbeat-scene {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at center, rgba(255, 105, 180, 0.18), rgba(15, 10, 30, 0.95) 55%),
+        linear-gradient(180deg, #120818 0%, #1b1028 35%, #0d0715 100%);
+      color: white;
+      overflow: hidden;
+      position: relative;
     }
 
-    .candle-flame {
-      animation: flameFlicker 0.18s infinite alternate;
-      transform-origin: center bottom;
+    .pulse-heart-wrap {
+      position: relative;
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 30px;
     }
 
-    @keyframes flameFlicker {
-      from { transform: scale(1) rotate(-2deg); }
-      to { transform: scale(1.06) rotate(2deg); }
+    .pulse-heart {
+      font-size: 92px;
+      line-height: 180px;
+      animation: heartbeatPulse 1s infinite;
+      text-shadow:
+        0 0 10px rgba(255,92,138,0.95),
+        0 0 25px rgba(255,92,138,0.75),
+        0 0 45px rgba(255,92,138,0.55);
     }
 
-    .pulse-soft {
-      animation: pulseSoft 1.15s infinite ease-in-out;
-    }
-
-    @keyframes pulseSoft {
-      0%,100% { transform: scale(1); }
-      30% { transform: scale(1.05); }
-      60% { transform: scale(0.98); }
-    }
-
-    .beat-ring {
+    .ring {
       position: absolute;
       inset: 0;
+      border: 3px solid rgba(255, 105, 180, 0.45);
       border-radius: 9999px;
-      border: 3px solid rgba(255,92,138,0.45);
-      animation: beatRing 1.15s infinite ease-out;
+      animation: ringPulse 1s infinite;
     }
 
-    @keyframes beatRing {
-      0% { transform: scale(0.9); opacity: 0.8; }
-      100% { transform: scale(1.35); opacity: 0; }
+    .ring.two {
+      animation-delay: 0.25s;
     }
 
-    .fade-up {
-      animation: fadeUp 1s ease forwards;
+    @keyframes heartbeatPulse {
+      0% { transform: scale(1); }
+      14% { transform: scale(1.16); }
+      28% { transform: scale(1); }
+      42% { transform: scale(1.12); }
+      70% { transform: scale(1); }
+      100% { transform: scale(1); }
     }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes ringPulse {
+      0% { transform: scale(0.8); opacity: 0.8; }
+      100% { transform: scale(1.7); opacity: 0; }
+    }
+
+    .heartbeat-text {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: all 1s ease;
+    }
+
+    .heartbeat-text.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .glow-text {
+      color: #ffd6e8;
+      text-shadow:
+        0 0 8px rgba(255, 192, 203, 0.9),
+        0 0 18px rgba(255, 92, 138, 0.7),
+        0 0 35px rgba(255, 92, 138, 0.45);
+    }
+
+    .video-box {
+      box-shadow: 0 18px 45px rgba(0,0,0,0.18);
+      border-radius: 24px;
+      overflow: hidden;
+      background: white;
+    }
+
+    .love-reveal {
+      opacity: 0;
+      transform: scale(0.95) translateY(12px);
+      transition: all 1s ease;
+    }
+
+    .love-reveal.show {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+
+    .love-glow {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      color: #ff5c8a;
+      text-shadow:
+        0 0 10px rgba(255,92,138,0.9),
+        0 0 25px rgba(255,92,138,0.75),
+        0 0 50px rgba(255,182,193,0.6);
+      animation: glowPulse 2s infinite ease-in-out;
+    }
+
+    @keyframes glowPulse {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
   </style>
 </head>
-<body class="text-gray-700 font-body min-h-screen relative">
+<body class="text-center">
 
-  <div class="blob bg-pink-300 w-72 h-72 rounded-full top-0 left-0 mix-blend-multiply"></div>
-  <div class="blob bg-purple-300 w-72 h-72 rounded-full bottom-0 right-0 mix-blend-multiply"></div>
-  <div class="blob bg-yellow-200 w-56 h-56 rounded-full top-1/3 right-1/4 mix-blend-multiply"></div>
+  <!-- landing -->
+  <section id="landing" class="min-h-screen flex flex-col items-center justify-center px-4 relative z-10">
+    <p class="text-pink-500 font-bold text-lg mb-3">A little surprise for Aarseeya 💌</p>
+    <h1 class="text-5xl md:text-6xl text-pink-500 mb-4">Hey Aarseeya...</h1>
+    <p class="text-lg text-gray-500 mb-8">Tap the gift and let me show you something beautiful ✨</p>
+    <div onclick="openGift()" class="text-7xl cursor-pointer hover:scale-110 transition">🎁</div>
+  </section>
 
-  <div id="player-wrap" class="fixed bottom-0 right-0 w-0 h-0 overflow-hidden">
-    <div id="yt-player"></div>
-  </div>
+  <!-- main celebration -->
+  <section id="main" class="hidden-section max-w-5xl mx-auto px-4 py-10 relative z-10">
+    <h1 class="text-5xl md:text-7xl text-pink-500 mb-4">Happy Birthday Aarseeya 🎂</h1>
+    <p class="text-xl md:text-2xl text-gray-600 mb-8">March 25 — your beautiful day ✨</p>
 
-  <section id="section-landing" class="text-center z-10 w-full max-w-md px-4 min-h-screen flex flex-col items-center justify-center">
-    <p class="text-pink-500 font-bold text-lg mb-3">A sweet little surprise for Sani 💌</p>
-    <h1 class="title-font text-4xl md:text-6xl text-pink-500 mb-4">Hey Pyari...</h1>
-    <p class="text-lg text-gray-500 mb-6">
-      March 25 is your day ✨
+    <div class="glass max-w-3xl mx-auto rounded-3xl p-6 md:p-8 mb-10 text-left">
+      <p class="text-center text-2xl font-bold text-pink-500 mb-5">To my Paran Pyari 💌</p>
+
+      <p class="mb-4 text-lg leading-8">
+        Happy Birthday to the girl who holds such a special place in my heart.🥺🤍
+      </p>
+      <p class="mb-4 text-lg leading-8">
+        Today is your day, but somehow I feel grateful too…<br>
+        Grateful because in this huge world, I got someone like you.💘
+      </p>
+      <p class="mb-4 text-lg leading-8">
+        Thank you for coming into my life and making everything feel lighter.<br>
+        Thank you for every smile, every laugh, every little effort, and every moment of love.🤍🧸
+      </p>
+      <p class="mb-4 text-lg leading-8">
+        You are the kind of person my heart feels safe with.<br>
+        The kind of person I can never stop appreciating.<br>
+        The kind of person I never want to lose.😭
+      </p>
+      <p class="mb-2 text-lg leading-8">
+        I love you so much, Aarseeya.🌍<br>
+        More deeply than these words can hold.<br>
+        More truly than I have ever loved before.✨
+      </p>
+
+      <p class="text-center text-2xl font-bold text-pink-500 mt-6">
+        Happppppppppy Birthday buduuu 🎂💫
+      </p>
+    </div>
+
+    <!-- video area -->
+    <div class="max-w-3xl mx-auto mb-10">
+      <div class="video-box">
+        <video id="videoPlayer" class="w-full" playsinline></video>
+      </div>
+    </div>
+
+    <!-- photos -->
+    <div id="photos-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-6"></div>
+
+    <p id="memory-line" class="memory-line text-xl md:text-2xl text-pink-500 font-semibold text-center mb-6">
+      Oh deen bhi kya deen thya 💖
     </p>
 
-    <div class="glass rounded-3xl p-4 mb-8 w-full max-w-sm">
-      <p class="text-sm text-gray-500 mb-3">Countdown to your birthday 💖</p>
-      <div class="flex items-center justify-center gap-3 flex-wrap">
-        <div class="countdown-box bg-white rounded-2xl p-3 shadow">
-          <div id="days" class="text-2xl font-extrabold text-pink-500">00</div>
-          <div class="text-xs text-gray-500">Days</div>
-        </div>
-        <div class="countdown-box bg-white rounded-2xl p-3 shadow">
-          <div id="hours" class="text-2xl font-extrabold text-pink-500">00</div>
-          <div class="text-xs text-gray-500">Hours</div>
-        </div>
-        <div class="countdown-box bg-white rounded-2xl p-3 shadow">
-          <div id="minutes" class="text-2xl font-extrabold text-pink-500">00</div>
-          <div class="text-xs text-gray-500">Minutes</div>
-        </div>
-        <div class="countdown-box bg-white rounded-2xl p-3 shadow">
-          <div id="seconds" class="text-2xl font-extrabold text-pink-500">00</div>
-          <div class="text-xs text-gray-500">Seconds</div>
-        </div>
-      </div>
+    <div id="celebrate-wrap" class="celebrate-wrap text-center mt-6">
+      <button onclick="startBirthdayCelebration()" class="bg-pink-500 hover:bg-pink-600 text-white px-7 py-3 rounded-full font-bold shadow-lg transition-transform hover:scale-105">
+        Start Celebration 🎉
+      </button>
     </div>
 
-    <div id="gift-box-container" class="gift-bounce cursor-pointer mx-auto w-52 h-52 relative transform transition-transform hover:scale-105" onclick="openGift()">
-      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-full drop-shadow-xl">
-        <rect x="40" y="80" width="120" height="100" fill="#ffd1dc" rx="5" />
-        <rect x="90" y="80" width="20" height="100" fill="#ff6b6b" />
-        <rect id="lid" x="30" y="60" width="140" height="30" fill="#ff99ac" rx="5" />
-        <rect id="lid-ribbon" x="90" y="60" width="20" height="30" fill="#ff6b6b" />
-        <path id="bow" d="M100 60 C80 30 50 60 90 65 C50 65 30 30 95 60 C105 30 140 30 110 60 C150 50 160 30 100 60" fill="none" stroke="#ff6b6b" stroke-width="8" stroke-linecap="round" />
-      </svg>
-      <p class="mt-4 text-sm text-gray-400 animate-pulse">(Tap to open)</p>
-    </div>
-  </section>
-
-  <section id="section-celebration" class="hidden-section w-full max-w-5xl mx-auto px-4 pb-20 pt-10 z-10 relative">
-    <div class="text-center mb-8 fade-up">
-      <h2 class="title-font text-5xl md:text-7xl text-pink-500 mb-2">Happy Birthday Aarseeya! 🎂</h2>
-      <p class="text-xl md:text-2xl text-gray-600 mb-4">
-        March 25 — your beautiful day ✨
-      </p>
-      <p class="text-lg text-gray-500 max-w-2xl mx-auto">
-        And yes... this whole little world right here is just for you, my paran pyari 💖
-      </p>
-    </div>
-
-    <div class="glass max-w-3xl mx-auto rounded-3xl p-6 md:p-8 mb-10 fade-up">
-      <p class="text-center text-xl md:text-2xl font-bold text-pink-500 mb-5">To my Paran Pyari 💌</p>
-
-      <div class="text-left text-gray-700 leading-8 text-lg">
-        <p class="mb-4">Happy Birthday to the girl who holds such a special place in my heart.🥺🤍</p>
-
-        <p class="mb-4">
-          Today is your day, but somehow I feel grateful too…<br>
-          Grateful because in this huge world, I got someone like you.<br>
-          Someone so kind, so understanding, so loving, and so precious.💘
-        </p>
-
-        <p class="mb-4">
-          Thank you for coming into my life and making everything feel lighter.<br>
-          Thank you for every smile you gave me when I needed it the most.🥺<br>
-          Thank you for every laugh, every care, every little effort, and every moment of love.🤍🧸<br>
-          Thank youuu so much for being patient with me, for supporting me, and for being my peace.🎀
-        </p>
-
-        <p class="mb-4">
-          You are not just special to me.<br>
-          You are the kind of person my heart feels safe with.<br>
-          The kind of person I can never stop appreciating.<br>
-          The kind of person I never want to lose.😭
-        </p>
-
-        <p class="mb-2">
-          I love you so much, Aarseeya.🌍<br>
-          More deeply than these words can hold.<br>
-          More truly than I have ever loved before.<br>
-          And on your birthday, I just want you to know that your happiness matters so much to me.✨
-        </p>
-
-        <p class="text-center text-xl md:text-2xl font-bold text-pink-500 mt-6">
-          Happppppppppy Birthday buduuu 🎂💫
-        </p>
-      </div>
-    </div>
-
-    <div class="max-w-4xl mx-auto mb-12">
-      <div id="photos-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-6"></div>
-
-      <p id="memory-line" class="memory-line text-xl md:text-2xl text-rose-500 font-semibold text-center">
-        Oh deen bhi kya deen thya 💖
-      </p>
-
-      <div id="celebrate-wrap" class="celebrate-wrap text-center mt-8">
-        <button onclick="startBirthdayCelebration()" class="bg-pink-500 hover:bg-pink-600 text-white px-7 py-3 rounded-full font-bold shadow-lg transition-transform hover:scale-105">
-          Start Celebration 🎉
-        </button>
-      </div>
-    </div>
-
-    <div class="text-center">
-      <p class="mb-4 text-gray-500 text-lg">I got you a cake...</p>
-      <button onclick="scrollToCake()" class="bg-pink-400 text-white px-6 py-3 rounded-full font-bold shadow-lg hover:bg-pink-500 transition-colors animate-bounce">
+    <div id="cake-btn-wrap" class="cake-btn-wrap text-center mt-8">
+      <button onclick="scrollToCake()" class="bg-pink-400 hover:bg-pink-500 text-white px-7 py-3 rounded-full font-bold shadow-lg transition-transform hover:scale-105">
         See the Cake ↓
       </button>
+    </div>
 
-      <p id="restartMsg" class="restart-note text-center text-pink-500 font-semibold mt-8 text-lg">
-        Wanna listen again? 💌<br>
-        Gotta restart the surprise again completely ✨
+    <p id="restartMsg" class="restart-note text-center text-pink-500 font-semibold mt-8 text-lg">
+      Wanna listen again? 💌<br>
+      Gotta restart the surprise again completely ✨
+    </p>
+  </section>
+
+  <!-- heartbeat scene -->
+  <section id="heartbeatSection" class="hidden-section heartbeat-scene flex flex-col items-center justify-center px-6 text-center">
+    <div class="relative z-10">
+      <div class="pulse-heart-wrap">
+        <div class="ring"></div>
+        <div class="ring two"></div>
+        <div class="pulse-heart">❤️</div>
+      </div>
+
+      <p id="hbText1" class="heartbeat-text text-2xl md:text-4xl font-bold glow-text mb-5">
+        Every beat feels your name...
+      </p>
+
+      <p id="hbText2" class="heartbeat-text text-lg md:text-2xl text-pink-100 max-w-2xl mx-auto leading-8">
+        In this silence, in this night, in this heart... it’s always you, Aarseeya.
       </p>
     </div>
   </section>
 
-  <section id="section-cake" class="hidden-section w-full max-w-md px-4 py-20 text-center z-10 relative">
-    <h2 class="title-font text-3xl md:text-5xl text-gray-700 mb-8">Make a wish... 🎂</h2>
+  <!-- cake -->
+  <section id="cakeSection" class="hidden-section min-h-screen flex flex-col items-center justify-center px-4 py-16 relative z-10">
+    <h2 class="text-4xl md:text-5xl text-pink-500 mb-8">Make a wish... 🎂</h2>
 
-    <div class="glass rounded-3xl p-6">
-      <div class="relative w-64 h-64 mx-auto cursor-pointer pulse-soft" onclick="blowCandle()">
-        <div class="beat-ring"></div>
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
-          <ellipse cx="100" cy="170" rx="90" ry="20" fill="#e0e0e0" />
-          <rect x="50" y="110" width="100" height="60" rx="5" fill="#f8b4d9" />
-          <path d="M50 110 Q100 130 150 110" fill="#ff9bc9" />
-          <path d="M50 110 C50 110 60 130 75 110 C75 110 85 130 100 110 C100 110 115 130 125 110 C125 110 135 130 150 110"
-                stroke="#fff" stroke-width="10" stroke-linecap="round" fill="none" />
-          <rect x="95" y="70" width="10" height="40" fill="#64b5f6" />
-          <rect x="95" y="70" width="10" height="5" fill="#42a5f5" />
+    <div onclick="showFinalLove()" class="cursor-pointer text-8xl mb-4 animate-pulse">🕯️</div>
+    <p class="text-gray-500 mb-10">(Tap the candle)</p>
 
-          <g id="flame-group" class="candle-flame">
-            <path id="flame" d="M100 70 Q90 50 100 30 Q110 50 100 70" fill="#ffeb3b" />
-            <circle cx="100" cy="65" r="3" fill="#ff9800" opacity="0.6" />
-          </g>
+    <div id="loveReveal" class="love-reveal">
+      <div class="love-glow">I LOVE YOU</div>
+      <p class="text-lg text-pink-500 mt-6 max-w-2xl mx-auto leading-8">
+        More than these words. More than this surprise. More than I can ever fully explain. 💖
+      </p>
 
-          <g id="smoke-group" opacity="0">
-            <path class="smoke" d="M100 70 Q90 50 95 30" stroke="#bdbdbd" stroke-width="2" fill="none" />
-            <path class="smoke" d="M100 70 Q110 50 105 25" stroke="#bdbdbd" stroke-width="2" fill="none" />
-          </g>
-        </svg>
-      </div>
-
-      <p class="mt-4 text-sm text-gray-400 italic" id="wish-text">(Tap the flame to blow it out)</p>
-      <p class="mt-2 text-pink-500 text-sm">Heartbeat mode 💓</p>
-    </div>
-  </section>
-
-  <section id="section-letter" class="hidden-section w-full max-w-3xl px-6 pb-20 z-10 relative">
-    <div class="paper-texture p-8 rounded-3xl transform transition-all duration-1000 translate-y-10 opacity-0" id="letter-content">
-      <div class="border-2 border-pink-200 p-5 rounded-2xl h-full">
-        <p class="text-right text-xs text-gray-400 mb-4" id="current-date"></p>
-        <h3 class="title-font text-2xl md:text-3xl text-pink-500 mb-5">To my favorite person,</h3>
-
-        <p class="leading-relaxed text-gray-700 mb-4 text-lg">
-          If I could wrap every feeling I have for you into one little surprise, it would probably look a lot like this.
-        </p>
-        <p class="leading-relaxed text-gray-700 mb-4 text-lg">
-          You made my life softer, warmer, happier, and so much more beautiful. Even the smallest moments with you feel special to me.
-        </p>
-        <p class="leading-relaxed text-gray-700 mb-4 text-lg">
-          Thank you for being my peace, my smile, my comfort, and one of the best parts of my life.
-        </p>
-        <p class="leading-relaxed text-gray-700 text-lg">
-          I love you so much. More than I can explain. More than these little pages can hold. 💖
-        </p>
-
-        <div id="love-reveal" class="love-reveal text-center mt-10">
-          <div class="love-glow">I LOVE YOU</div>
-        </div>
-
-        <p class="mt-8 title-font text-xl text-right text-pink-500">- Yours, always</p>
-
-        <div id="finale-wrap" class="finale-wrap mt-12 pt-8 border-t border-pink-200 text-center">
-          <p class="text-sm text-gray-500 mb-4">Wait, there's one last thing...</p>
-          <button onclick="triggerFinalSurprise()" class="bg-gradient-to-r from-purple-400 to-pink-500 text-white font-bold py-3 px-8 rounded-full shadow-xl transform transition hover:scale-110 hover:rotate-2 animate-pulse">
-            🎁 Fireworks Finale!
-          </button>
-        </div>
-      </div>
+      <button onclick="fireworksFinale()" class="mt-8 bg-gradient-to-r from-pink-500 to-purple-500 text-white px-8 py-3 rounded-full font-bold shadow-lg hover:scale-105 transition">
+        Fireworks Finale 🎆
+      </button>
     </div>
   </section>
 
   <script>
-    const landing = document.getElementById('section-landing');
-    const celebration = document.getElementById('section-celebration');
-    const cakeSection = document.getElementById('section-cake');
-    const letterSection = document.getElementById('section-letter');
+    const landing = document.getElementById("landing");
+    const main = document.getElementById("main");
+    const heartbeatSection = document.getElementById("heartbeatSection");
+    const cakeSection = document.getElementById("cakeSection");
+    const video = document.getElementById("videoPlayer");
 
-    const photos = [
-      "photo1.jpg",
-      "photo2.jpg",
-      "photo3.jpg"
-    ];
+    const photos = ["photo1.jpg", "photo2.jpg", "photo3.jpg"];
+    const photosContainer = document.getElementById("photos-container");
+    const memoryLine = document.getElementById("memory-line");
+    const celebrateWrap = document.getElementById("celebrate-wrap");
+    const cakeBtnWrap = document.getElementById("cake-btn-wrap");
+    const restartMsg = document.getElementById("restartMsg");
 
-    const photosContainer = document.getElementById('photos-container');
-    const memoryLine = document.getElementById('memory-line');
-    const celebrateWrap = document.getElementById('celebrate-wrap');
-    const restartMsg = document.getElementById('restartMsg');
-
-    const firstSongId = "QXJyMpxd210";
-    const birthdaySongId = "73Hld4gpaPA";
-
-    let player;
-    let firstSongStarted = false;
-    let celebrationSongStarted = false;
-    let firstSongTimeout;
-    let birthdaySongTimeout;
-    let candleBlown = false;
-    let heartBeatAudioStarted = false;
-
-    document.getElementById('current-date').innerText = new Date().toDateString();
-
-    function getNextBirthday() {
-      const now = new Date();
-      let target = new Date(now.getFullYear(), 2, 25, 0, 0, 0); // March is month 2
-      if (now > target) {
-        target = new Date(now.getFullYear() + 1, 2, 25, 0, 0, 0);
-      }
-      return target;
-    }
-
-    function updateCountdown() {
-      const now = new Date();
-      const target = getNextBirthday();
-      const diff = target - now;
-
-      const days = Math.max(0, Math.floor(diff / (1000 * 60 * 60 * 24)));
-      const hours = Math.max(0, Math.floor((diff / (1000 * 60 * 60)) % 24));
-      const minutes = Math.max(0, Math.floor((diff / (1000 * 60)) % 60));
-      const seconds = Math.max(0, Math.floor((diff / 1000) % 60));
-
-      document.getElementById('days').innerText = String(days).padStart(2, '0');
-      document.getElementById('hours').innerText = String(hours).padStart(2, '0');
-      document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
-      document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-
-    gsap.to("#gift-box-container", {
-      y: -10,
-      duration: 1.5,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut"
-    });
-
-    function onYouTubeIframeAPIReady() {
-      player = new YT.Player('yt-player', {
-        height: '1',
-        width: '1',
-        videoId: '',
-        playerVars: {
-          autoplay: 0,
-          controls: 0,
-          modestbranding: 1,
-          rel: 0
-        }
-      });
-    }
-
-    function fadeOutAndStop(duration = 6000) {
-      if (!player || typeof player.getVolume !== "function") return;
-
-      let volume = player.getVolume();
-      const steps = 20;
-      const stepTime = duration / steps;
-      const stepAmount = volume / steps;
-
-      const fadeInterval = setInterval(() => {
-        volume -= stepAmount;
-
-        if (volume <= 0) {
-          clearInterval(fadeInterval);
-          player.stopVideo();
-          player.setVolume(100);
-        } else {
-          player.setVolume(Math.max(0, Math.round(volume)));
-        }
-      }, stepTime);
-    }
+    let birthdayStarted = false;
+    let heartbeatRunning = false;
+    let heartbeatInterval;
+    let currentStepTimeout = null;
 
     function openGift() {
-      const tl = gsap.timeline({
-        onComplete: () => {
-          landing.style.display = 'none';
-          initCelebration();
-          startFirstSong();
-          showPhotosOneByOne();
-        }
-      });
+      landing.style.display = "none";
+      main.style.display = "block";
+      gsap.to(main, { opacity: 1, duration: 1 });
 
-      tl.to("#lid", { y: -20, rotation: -10, duration: 0.5 })
-        .to("#gift-box-container", { scale: 1.2, opacity: 0, duration: 0.5 }, "<")
-        .to(landing, { opacity: 0, duration: 0.5 }, "<");
+      showPhotosOneByOne();
+      playKamleya();
     }
 
-    function initCelebration() {
-      celebration.style.display = 'block';
-      gsap.to(celebration, { opacity: 1, duration: 1 });
+    function playKamleya() {
+      video.src = "video1.mp4";
+      video.currentTime = 0;
+      video.play();
 
-      const duration = 3000;
-      const animationEnd = Date.now() + duration;
-      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
-
-      function randomInRange(min, max) {
-        return Math.random() * (max - min) + min;
-      }
-
-      const interval = setInterval(function() {
-        const timeLeft = animationEnd - Date.now();
-        if (timeLeft <= 0) return clearInterval(interval);
-
-        const particleCount = 50 * (timeLeft / duration);
-        confetti(Object.assign({}, defaults, {
-          particleCount,
-          origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
-        }));
-        confetti(Object.assign({}, defaults, {
-          particleCount,
-          origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
-        }));
-      }, 250);
+      clearTimeout(currentStepTimeout);
+      currentStepTimeout = setTimeout(() => {
+        video.pause();
+        showHeartbeatScene();
+      }, 100000); // 1:40
     }
 
-    function startFirstSong() {
-      if (firstSongStarted || !player || typeof player.loadVideoById !== "function") return;
-      firstSongStarted = true;
+    function showHeartbeatScene() {
+      main.style.display = "none";
+      heartbeatSection.style.display = "flex";
+      gsap.to(heartbeatSection, { opacity: 1, duration: 1 });
 
-      player.loadVideoById(firstSongId);
-      player.setVolume(100);
-      player.playVideo();
+      startHeartbeatSound();
+      startHeartbeatVisuals();
 
-      clearTimeout(firstSongTimeout);
-      firstSongTimeout = setTimeout(() => {
-        fadeOutAndStop(6000);
-      }, 100000);
+      setTimeout(() => document.getElementById("hbText1").classList.add("show"), 400);
+      setTimeout(() => document.getElementById("hbText2").classList.add("show"), 1800);
+
+      clearTimeout(currentStepTimeout);
+      currentStepTimeout = setTimeout(() => {
+        stopHeartbeatSound();
+        heartbeatSection.style.display = "none";
+        main.style.display = "block";
+        gsap.to(main, { opacity: 1, duration: 1 });
+        playQuote();
+      }, 60000); // 1 minute
+    }
+
+    function playQuote() {
+      video.src = "quote.mp4";
+      video.currentTime = 0;
+      video.play();
     }
 
     function startBirthdayCelebration() {
-      if (celebrationSongStarted || !player || typeof player.loadVideoById !== "function") return;
-      celebrationSongStarted = true;
+      if (birthdayStarted) return;
+      birthdayStarted = true;
 
-      confetti({
-        particleCount: 180,
-        spread: 120,
-        origin: { y: 0.6 }
-      });
+      video.src = "birthday.mp4";
+      video.currentTime = 0;
+      video.play();
 
-      player.loadVideoById(birthdaySongId);
-      player.setVolume(100);
-      player.playVideo();
-
-      clearTimeout(birthdaySongTimeout);
-      birthdaySongTimeout = setTimeout(() => {
-        fadeOutAndStop(5000);
+      setTimeout(() => {
         restartMsg.classList.add("show");
-      }, 45000);
+      }, 3000);
     }
 
     function createPhotoCard(photoPath, index) {
       const wrapper = document.createElement("div");
       wrapper.className = "photo-card";
-
       wrapper.innerHTML = `
-        <div class="polaroid bg-white p-3 shadow-xl rounded-2xl">
-          <img src="${photoPath}" class="rounded-xl w-full h-80 object-cover" alt="Memory ${index + 1}">
+        <div class="bg-white p-3 rounded-2xl shadow-xl">
+          <img src="${photoPath}" class="w-full h-80 object-cover rounded-xl" alt="Memory ${index + 1}">
         </div>
       `;
-
       photosContainer.appendChild(wrapper);
 
-      setTimeout(() => {
-        wrapper.classList.add("show");
-      }, 100);
+      setTimeout(() => wrapper.classList.add("show"), 100);
     }
 
     function showPhotosOneByOne(index = 0) {
       if (index >= photos.length) {
-        setTimeout(() => {
-          memoryLine.classList.add("show");
-        }, 400);
-
-        setTimeout(() => {
-          celebrateWrap.classList.add("show");
-        }, 900);
+        setTimeout(() => memoryLine.classList.add("show"), 400);
+        setTimeout(() => celebrateWrap.classList.add("show"), 900);
+        setTimeout(() => cakeBtnWrap.classList.add("show"), 1400);
         return;
       }
 
@@ -663,177 +427,104 @@
     }
 
     function scrollToCake() {
-      cakeSection.style.display = 'block';
-      gsap.to(cakeSection, { opacity: 1, duration: 1, delay: 0.2 });
-      cakeSection.scrollIntoView({ behavior: 'smooth' });
-      if (!heartBeatAudioStarted) startHeartbeatSound();
+      cakeSection.style.display = "flex";
+      gsap.to(cakeSection, { opacity: 1, duration: 1 });
+      cakeSection.scrollIntoView({ behavior: "smooth" });
+      startHeartbeatSound();
     }
 
-    let heartbeatCtx;
-    function startHeartbeatSound() {
-      heartBeatAudioStarted = true;
-      try {
-        heartbeatCtx = new (window.AudioContext || window.webkitAudioContext)();
-
-        function beatOnce(time, gainAmount = 0.45) {
-          const osc = heartbeatCtx.createOscillator();
-          const gain = heartbeatCtx.createGain();
-
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(75, time);
-          osc.frequency.exponentialRampToValueAtTime(48, time + 0.08);
-
-          gain.gain.setValueAtTime(0.0001, time);
-          gain.gain.exponentialRampToValueAtTime(gainAmount, time + 0.01);
-          gain.gain.exponentialRampToValueAtTime(0.0001, time + 0.15);
-
-          osc.connect(gain);
-          gain.connect(heartbeatCtx.destination);
-
-          osc.start(time);
-          osc.stop(time + 0.18);
-        }
-
-        function loopHeartbeat() {
-          if (!heartBeatAudioStarted) return;
-          const now = heartbeatCtx.currentTime;
-          beatOnce(now, 0.35);
-          beatOnce(now + 0.23, 0.28);
-          setTimeout(loopHeartbeat, 1150);
-        }
-
-        loopHeartbeat();
-      } catch (e) {}
+    function showFinalLove() {
+      document.getElementById("loveReveal").classList.add("show");
+      stopHeartbeatSound();
     }
 
-    function blowCandle() {
-      if (candleBlown) return;
-      candleBlown = true;
-
-      const tl = gsap.timeline();
-
-      tl.to("#flame-group", {
-          scale: 0,
-          opacity: 0,
-          transformOrigin: "center bottom",
-          duration: 0.5
-        })
-        .to("#smoke-group", { opacity: 1, duration: 0.2 })
-        .to(".smoke", { y: -20, opacity: 0, duration: 1.5, stagger: 0.2 })
-        .to("#wish-text", { opacity: 0, duration: 0.2 }, "<")
-        .add(() => {
-          document.getElementById("wish-text").innerText = "Wish granted! ✨";
-          gsap.to("#wish-text", { opacity: 1, duration: 0.4 });
-        });
-
-      tl.add(() => {
-        showLetter();
-      }, "-=0.6");
-    }
-
-    function showLetter() {
-      letterSection.style.display = 'block';
-      letterSection.scrollIntoView({ behavior: 'smooth' });
-
-      gsap.to(letterSection, { opacity: 1, duration: 1 });
-      gsap.to("#letter-content", {
-        y: 0,
-        opacity: 1,
-        duration: 1.5,
-        ease: "power3.out",
-        delay: 0.4
-      });
-
+    function fireworksFinale() {
+      fireBurst(12);
       setTimeout(() => {
-        document.getElementById("love-reveal").classList.add("show");
-      }, 1200);
-
-      setTimeout(() => {
-        document.getElementById("finale-wrap").classList.add("show");
-      }, 2200);
+        alert("I love you so much, Aarseeya 💖🎆");
+      }, 1800);
     }
 
-    function fireworkBurst(count = 6) {
+    function fireBurst(count = 8) {
       for (let i = 0; i < count; i++) {
         setTimeout(() => {
-          confetti({
-            particleCount: 120,
-            spread: 90,
-            startVelocity: 45,
-            scalar: 1.15,
-            origin: {
-              x: Math.random() * 0.8 + 0.1,
-              y: Math.random() * 0.45 + 0.05
-            }
-          });
-        }, i * 350);
+          for (let j = 0; j < 24; j++) {
+            const spark = document.createElement("div");
+            spark.className = "spark";
+            spark.style.left = (window.innerWidth * (0.2 + Math.random() * 0.6)) + "px";
+            spark.style.top = (window.innerHeight * (0.1 + Math.random() * 0.5)) + "px";
+            spark.style.color = ["#f9a8d4","#fcd34d","#c4b5fd","#93c5fd","#ffffff"][Math.floor(Math.random() * 5)];
+            document.body.appendChild(spark);
+            setTimeout(() => spark.remove(), 2000);
+          }
+        }, i * 200);
       }
     }
 
-    function triggerFinalSurprise() {
-      fireworkBurst(10);
+    function startHeartbeatVisuals() {
+      for (let i = 0; i < 30; i++) {
+        setTimeout(() => createSpark(), i * 200);
+      }
+    }
 
-      setTimeout(() => {
-        confetti({
-          particleCount: 250,
-          spread: 160,
-          origin: { y: 0.6 }
-        });
-      }, 1800);
+    function startHeartbeatSound() {
+      if (heartbeatRunning) return;
+      heartbeatRunning = true;
 
-      setTimeout(() => {
-        alert("I love you so much, Aarseeya 💖🎆");
-      }, 2600);
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+
+      function beat() {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(70, ctx.currentTime);
+
+        gain.gain.setValueAtTime(0.001, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.45, ctx.currentTime + 0.01);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.18);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start();
+        osc.stop(ctx.currentTime + 0.2);
+      }
+
+      heartbeatInterval = setInterval(() => {
+        beat();
+        setTimeout(beat, 220);
+      }, 1000);
+    }
+
+    function stopHeartbeatSound() {
+      heartbeatRunning = false;
+      clearInterval(heartbeatInterval);
     }
 
     function createHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerHTML = "❤";
-      heart.style.left = Math.random() * window.innerWidth + "px";
-      heart.style.fontSize = (16 + Math.random() * 20) + "px";
-      heart.style.animationDuration = (3 + Math.random() * 3) + "s";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 6000);
+      const h = document.createElement("div");
+      h.className = "heart-fall";
+      h.innerHTML = "❤";
+      h.style.left = Math.random() * window.innerWidth + "px";
+      h.style.fontSize = (16 + Math.random() * 18) + "px";
+      h.style.animationDuration = (3 + Math.random() * 3) + "s";
+      document.body.appendChild(h);
+      setTimeout(() => h.remove(), 6000);
     }
-
-    function createStar() {
-      const star = document.createElement("div");
-      star.className = "star";
-      star.style.left = Math.random() * window.innerWidth + "px";
-      star.style.top = Math.random() * window.innerHeight + "px";
-      star.style.animationDuration = (1.5 + Math.random() * 2.5) + "s";
-      document.body.appendChild(star);
-      setTimeout(() => star.remove(), 5000);
-    }
-
-    const sparkleColors = ['#f9a8d4', '#fcd34d', '#c4b5fd', '#93c5fd', '#ffffff'];
 
     function createSpark() {
-      const spark = document.createElement("div");
-      spark.className = "spark";
-      spark.style.left = Math.random() * window.innerWidth + "px";
-      spark.style.top = Math.random() * window.innerHeight + "px";
-      spark.style.color = sparkleColors[Math.floor(Math.random() * sparkleColors.length)];
-      spark.style.animationDuration = (1.5 + Math.random() * 2) + "s";
-      document.body.appendChild(spark);
-      setTimeout(() => spark.remove(), 5000);
-    }
-
-    function createLightDot() {
-      const dot = document.createElement("div");
-      dot.className = "light-dot";
-      dot.style.left = Math.random() * window.innerWidth + "px";
-      dot.style.top = (window.innerHeight - 40 + Math.random() * 80) + "px";
-      dot.style.color = sparkleColors[Math.floor(Math.random() * sparkleColors.length)];
-      document.body.appendChild(dot);
-      setTimeout(() => dot.remove(), 4000);
+      const s = document.createElement("div");
+      s.className = "spark";
+      s.style.left = Math.random() * window.innerWidth + "px";
+      s.style.top = Math.random() * window.innerHeight + "px";
+      s.style.color = ["#f9a8d4","#fcd34d","#c4b5fd","#93c5fd","#ffffff"][Math.floor(Math.random() * 5)];
+      document.body.appendChild(s);
+      setTimeout(() => s.remove(), 3000);
     }
 
     setInterval(createHeart, 700);
-    setInterval(createStar, 450);
-    setInterval(createSpark, 600);
-    setInterval(createLightDot, 350);
+    setInterval(createSpark, 900);
   </script>
 </body>
 </html>
