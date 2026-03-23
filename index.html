@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday Aarseeya 💖</title>
+  <title>Happy Birthday Sanu Baby ❤️</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -24,12 +24,8 @@
       opacity: 0;
     }
 
-    .title-font {
-      font-family: cursive;
-    }
-
     .glass {
-      background: rgba(255,255,255,0.55);
+      background: rgba(255,255,255,0.58);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(255,255,255,0.45);
       box-shadow: 0 15px 35px rgba(0,0,0,0.08);
@@ -54,7 +50,9 @@
     .memory-line,
     .celebrate-wrap,
     .restart-note,
-    .cake-btn-wrap {
+    .cake-btn-wrap,
+    .quote-wrap,
+    .love-reveal {
       opacity: 0;
       transform: translateY(15px);
       transition: all 1s ease;
@@ -63,7 +61,9 @@
     .memory-line.show,
     .celebrate-wrap.show,
     .restart-note.show,
-    .cake-btn-wrap.show {
+    .cake-btn-wrap.show,
+    .quote-wrap.show,
+    .love-reveal.show {
       opacity: 1;
       transform: translateY(0);
     }
@@ -111,7 +111,8 @@
       position: relative;
       width: 180px;
       height: 180px;
-      margin: 0 auto 30px;
+      margin: 0 auto 26px;
+      z-index: 3;
     }
 
     .pulse-heart {
@@ -154,6 +155,8 @@
       opacity: 0;
       transform: translateY(18px);
       transition: all 1s ease;
+      position: relative;
+      z-index: 3;
     }
 
     .heartbeat-text.show {
@@ -169,22 +172,81 @@
         0 0 35px rgba(255, 92, 138, 0.45);
     }
 
-    .video-box {
-      box-shadow: 0 18px 45px rgba(0,0,0,0.18);
-      border-radius: 24px;
+    .typing-name {
+      display: inline-block;
       overflow: hidden;
-      background: white;
+      white-space: nowrap;
+      border-right: 3px solid rgba(255,255,255,0.7);
+      width: 0;
     }
 
-    .love-reveal {
+    .typing-name.show {
+      animation: typing 2.8s steps(8, end) forwards, blink .8s infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      0%, 100% { border-color: transparent; }
+      50% { border-color: rgba(255,255,255,0.8); }
+    }
+
+    .ecg-wrap {
+      width: min(90vw, 820px);
+      margin: 0 auto 26px;
+      position: relative;
+      z-index: 3;
       opacity: 0;
-      transform: scale(0.95) translateY(12px);
+      transform: translateY(10px);
       transition: all 1s ease;
     }
 
-    .love-reveal.show {
+    .ecg-wrap.show {
       opacity: 1;
-      transform: scale(1) translateY(0);
+      transform: translateY(0);
+    }
+
+    .ecg-line {
+      stroke: #ff7aa8;
+      stroke-width: 4;
+      fill: none;
+      filter: drop-shadow(0 0 8px rgba(255,122,168,0.9));
+      stroke-dasharray: 900;
+      stroke-dashoffset: 900;
+      animation: ecgMove 2.2s linear infinite;
+    }
+
+    @keyframes ecgMove {
+      0% { stroke-dashoffset: 900; }
+      100% { stroke-dashoffset: 0; }
+    }
+
+    .hb-word {
+      position: absolute;
+      color: rgba(255, 221, 234, 0.18);
+      font-size: clamp(16px, 2vw, 26px);
+      font-weight: 700;
+      pointer-events: none;
+      z-index: 1;
+      animation: driftWord 12s linear infinite;
+      text-shadow: 0 0 16px rgba(255,255,255,0.08);
+    }
+
+    @keyframes driftWord {
+      0% { transform: translateY(20px) translateX(0) scale(0.95); opacity: 0; }
+      15% { opacity: 1; }
+      50% { transform: translateY(-30px) translateX(12px) scale(1); opacity: 0.9; }
+      100% { transform: translateY(-80px) translateX(-16px) scale(1.05); opacity: 0; }
+    }
+
+    .quote-box {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 0 35px rgba(255,92,138,0.12);
+      backdrop-filter: blur(10px);
     }
 
     .love-glow {
@@ -205,18 +267,19 @@
 </head>
 <body class="text-center">
 
-  <!-- landing -->
+  <audio id="song1" src="song1.mp3"></audio>
+  <audio id="song2" src="birthday.mp3"></audio>
+
   <section id="landing" class="min-h-screen flex flex-col items-center justify-center px-4 relative z-10">
-    <p class="text-pink-500 font-bold text-lg mb-3">A little surprise for Aarseeya 💌</p>
-    <h1 class="text-5xl md:text-6xl text-pink-500 mb-4">Hey Aarseeya...</h1>
+    <p class="text-pink-500 font-bold text-lg mb-3">A little surprise for Sanu Baby ❤️</p>
+    <h1 class="text-5xl md:text-6xl text-pink-500 mb-4">Hey Sanu Baby...</h1>
     <p class="text-lg text-gray-500 mb-8">Tap the gift and let me show you something beautiful ✨</p>
     <div onclick="openGift()" class="text-7xl cursor-pointer hover:scale-110 transition">🎁</div>
   </section>
 
-  <!-- main celebration -->
   <section id="main" class="hidden-section max-w-5xl mx-auto px-4 py-10 relative z-10">
-    <h1 class="text-5xl md:text-7xl text-pink-500 mb-4">Happy Birthday Aarseeya 🎂</h1>
-    <p class="text-xl md:text-2xl text-gray-600 mb-8">March 25 — your beautiful day ✨</p>
+    <h1 class="text-5xl md:text-7xl text-pink-500 mb-4">Happy Birthday ❤️</h1>
+    <p class="text-xl md:text-2xl text-gray-600 mb-8">For my Paran Pyari 💌</p>
 
     <div class="glass max-w-3xl mx-auto rounded-3xl p-6 md:p-8 mb-10 text-left">
       <p class="text-center text-2xl font-bold text-pink-500 mb-5">To my Paran Pyari 💌</p>
@@ -248,19 +311,21 @@
       </p>
     </div>
 
-    <!-- video area -->
-    <div class="max-w-3xl mx-auto mb-10">
-      <div class="video-box">
-        <video id="videoPlayer" class="w-full" playsinline></video>
-      </div>
-    </div>
-
-    <!-- photos -->
     <div id="photos-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-6"></div>
 
     <p id="memory-line" class="memory-line text-xl md:text-2xl text-pink-500 font-semibold text-center mb-6">
       Oh deen bhi kya deen thya 💖
     </p>
+
+    <div id="quote-wrap" class="quote-wrap max-w-3xl mx-auto mb-8">
+      <div class="quote-box rounded-3xl p-6 text-center">
+        <p class="text-2xl md:text-3xl text-pink-500 font-bold mb-4">And after all this...</p>
+        <p class="text-lg md:text-xl text-gray-700 leading-8">
+          it was always you, Sanu Baby ❤️<br>
+          in every beat, every prayer, every quiet little feeling.
+        </p>
+      </div>
+    </div>
 
     <div id="celebrate-wrap" class="celebrate-wrap text-center mt-6">
       <button onclick="startBirthdayCelebration()" class="bg-pink-500 hover:bg-pink-600 text-white px-7 py-3 rounded-full font-bold shadow-lg transition-transform hover:scale-105">
@@ -280,13 +345,43 @@
     </p>
   </section>
 
-  <!-- heartbeat scene -->
   <section id="heartbeatSection" class="hidden-section heartbeat-scene flex flex-col items-center justify-center px-6 text-center">
-    <div class="relative z-10">
+    <div id="heartbeatWords"></div>
+
+    <div class="relative z-10 max-w-5xl w-full">
+      <p class="text-pink-200 text-sm md:text-base mb-5 tracking-[0.3em] uppercase">Heartbeat mode</p>
+
       <div class="pulse-heart-wrap">
         <div class="ring"></div>
         <div class="ring two"></div>
         <div class="pulse-heart">❤️</div>
+      </div>
+
+      <div class="mb-6">
+        <span id="typedName" class="typing-name text-4xl md:text-6xl font-bold glow-text">SANU BABY</span>
+      </div>
+
+      <div id="ecgWrap" class="ecg-wrap">
+        <svg viewBox="0 0 900 160" class="w-full">
+          <path class="ecg-line" d="M0 90 
+            L110 90 
+            L150 90 
+            L180 90 
+            L205 90 
+            L220 45 
+            L240 125 
+            L265 28 
+            L295 90 
+            L390 90 
+            L430 90 
+            L460 90 
+            L485 90 
+            L500 55 
+            L520 118 
+            L545 22 
+            L575 90 
+            L900 90" />
+        </svg>
       </div>
 
       <p id="hbText1" class="heartbeat-text text-2xl md:text-4xl font-bold glow-text mb-5">
@@ -294,12 +389,15 @@
       </p>
 
       <p id="hbText2" class="heartbeat-text text-lg md:text-2xl text-pink-100 max-w-2xl mx-auto leading-8">
-        In this silence, in this night, in this heart... it’s always you, Aarseeya.
+        In this silence, in this night, in this heart... it’s always you, Paran Pyari.
+      </p>
+
+      <p id="hbText3" class="heartbeat-text text-base md:text-xl text-pink-200 max-w-2xl mx-auto leading-8 mt-6">
+        Slow... deep... soft... and then all at once — like love learning how to breathe.
       </p>
     </div>
   </section>
 
-  <!-- cake -->
   <section id="cakeSection" class="hidden-section min-h-screen flex flex-col items-center justify-center px-4 py-16 relative z-10">
     <h2 class="text-4xl md:text-5xl text-pink-500 mb-8">Make a wish... 🎂</h2>
 
@@ -323,7 +421,6 @@
     const main = document.getElementById("main");
     const heartbeatSection = document.getElementById("heartbeatSection");
     const cakeSection = document.getElementById("cakeSection");
-    const video = document.getElementById("videoPlayer");
 
     const photos = ["photo1.jpg", "photo2.jpg", "photo3.jpg"];
     const photosContainer = document.getElementById("photos-container");
@@ -331,11 +428,16 @@
     const celebrateWrap = document.getElementById("celebrate-wrap");
     const cakeBtnWrap = document.getElementById("cake-btn-wrap");
     const restartMsg = document.getElementById("restartMsg");
+    const quoteWrap = document.getElementById("quote-wrap");
+
+    const song1 = document.getElementById("song1");
+    const song2 = document.getElementById("song2");
 
     let birthdayStarted = false;
     let heartbeatRunning = false;
     let heartbeatInterval;
     let currentStepTimeout = null;
+    let wordInterval = null;
 
     function openGift() {
       landing.style.display = "none";
@@ -343,19 +445,35 @@
       gsap.to(main, { opacity: 1, duration: 1 });
 
       showPhotosOneByOne();
-      playKamleya();
+      startFirstSong();
     }
 
-    function playKamleya() {
-      video.src = "video1.mp4";
-      video.currentTime = 0;
-      video.play();
+    function startFirstSong() {
+      song1.currentTime = 0;
+      song1.volume = 1;
+      song1.play();
 
       clearTimeout(currentStepTimeout);
       currentStepTimeout = setTimeout(() => {
-        video.pause();
-        showHeartbeatScene();
-      }, 100000); // 1:40
+        fadeOut(song1, 6000);
+        setTimeout(showHeartbeatScene, 6000);
+      }, 100000);
+    }
+
+    function fadeOut(audio, duration) {
+      let steps = 20;
+      let stepTime = duration / steps;
+      let volStep = audio.volume / steps;
+
+      let fade = setInterval(() => {
+        if (audio.volume > 0) {
+          audio.volume = Math.max(0, audio.volume - volStep);
+        } else {
+          clearInterval(fade);
+          audio.pause();
+          audio.currentTime = 0;
+        }
+      }, stepTime);
     }
 
     function showHeartbeatScene() {
@@ -363,39 +481,38 @@
       heartbeatSection.style.display = "flex";
       gsap.to(heartbeatSection, { opacity: 1, duration: 1 });
 
-      startHeartbeatSound();
-      startHeartbeatVisuals();
-
-      setTimeout(() => document.getElementById("hbText1").classList.add("show"), 400);
+      document.getElementById("typedName").classList.add("show");
+      setTimeout(() => document.getElementById("ecgWrap").classList.add("show"), 500);
+      setTimeout(() => document.getElementById("hbText1").classList.add("show"), 900);
       setTimeout(() => document.getElementById("hbText2").classList.add("show"), 1800);
+      setTimeout(() => document.getElementById("hbText3").classList.add("show"), 2800);
+
+      startHeartbeatSound();
+      startFloatingWords();
 
       clearTimeout(currentStepTimeout);
       currentStepTimeout = setTimeout(() => {
         stopHeartbeatSound();
+        stopFloatingWords();
         heartbeatSection.style.display = "none";
         main.style.display = "block";
         gsap.to(main, { opacity: 1, duration: 1 });
-        playQuote();
-      }, 60000); // 1 minute
-    }
-
-    function playQuote() {
-      video.src = "quote.mp4";
-      video.currentTime = 0;
-      video.play();
+        quoteWrap.classList.add("show");
+      }, 60000);
     }
 
     function startBirthdayCelebration() {
       if (birthdayStarted) return;
       birthdayStarted = true;
 
-      video.src = "birthday.mp4";
-      video.currentTime = 0;
-      video.play();
+      song2.currentTime = 0;
+      song2.volume = 1;
+      song2.play();
 
+      megaFireworks();
       setTimeout(() => {
         restartMsg.classList.add("show");
-      }, 3000);
+      }, 2500);
     }
 
     function createPhotoCard(photoPath, index) {
@@ -407,15 +524,15 @@
         </div>
       `;
       photosContainer.appendChild(wrapper);
-
       setTimeout(() => wrapper.classList.add("show"), 100);
     }
 
     function showPhotosOneByOne(index = 0) {
       if (index >= photos.length) {
         setTimeout(() => memoryLine.classList.add("show"), 400);
-        setTimeout(() => celebrateWrap.classList.add("show"), 900);
-        setTimeout(() => cakeBtnWrap.classList.add("show"), 1400);
+        setTimeout(() => quoteWrap.classList.add("show"), 800);
+        setTimeout(() => celebrateWrap.classList.add("show"), 1300);
+        setTimeout(() => cakeBtnWrap.classList.add("show"), 1800);
         return;
       }
 
@@ -439,31 +556,25 @@
     }
 
     function fireworksFinale() {
-      fireBurst(12);
+      megaFireworks();
       setTimeout(() => {
-        alert("I love you so much, Aarseeya 💖🎆");
+        alert("I love you so much, Sanu Baby ❤️🎆");
       }, 1800);
     }
 
-    function fireBurst(count = 8) {
-      for (let i = 0; i < count; i++) {
+    function megaFireworks() {
+      for (let wave = 0; wave < 10; wave++) {
         setTimeout(() => {
-          for (let j = 0; j < 24; j++) {
+          for (let j = 0; j < 28; j++) {
             const spark = document.createElement("div");
             spark.className = "spark";
-            spark.style.left = (window.innerWidth * (0.2 + Math.random() * 0.6)) + "px";
-            spark.style.top = (window.innerHeight * (0.1 + Math.random() * 0.5)) + "px";
-            spark.style.color = ["#f9a8d4","#fcd34d","#c4b5fd","#93c5fd","#ffffff"][Math.floor(Math.random() * 5)];
+            spark.style.left = (window.innerWidth * (0.15 + Math.random() * 0.7)) + "px";
+            spark.style.top = (window.innerHeight * (0.08 + Math.random() * 0.45)) + "px";
+            spark.style.color = ["#f9a8d4","#fcd34d","#c4b5fd","#93c5fd","#ffffff","#ff5c8a"][Math.floor(Math.random() * 6)];
             document.body.appendChild(spark);
-            setTimeout(() => spark.remove(), 2000);
+            setTimeout(() => spark.remove(), 2200);
           }
-        }, i * 200);
-      }
-    }
-
-    function startHeartbeatVisuals() {
-      for (let i = 0; i < 30; i++) {
-        setTimeout(() => createSpark(), i * 200);
+        }, wave * 220);
       }
     }
 
@@ -500,6 +611,28 @@
     function stopHeartbeatSound() {
       heartbeatRunning = false;
       clearInterval(heartbeatInterval);
+    }
+
+    function startFloatingWords() {
+      const box = document.getElementById("heartbeatWords");
+      const words = ["Sanu Baby", "my heart", "paran pyari", "forever", "love", "buduuu", "always"];
+
+      wordInterval = setInterval(() => {
+        const w = document.createElement("div");
+        w.className = "hb-word";
+        w.innerText = words[Math.floor(Math.random() * words.length)];
+        w.style.left = Math.random() * 85 + "vw";
+        w.style.top = (55 + Math.random() * 35) + "vh";
+        w.style.animationDuration = (8 + Math.random() * 6) + "s";
+        box.appendChild(w);
+
+        setTimeout(() => w.remove(), 14000);
+      }, 700);
+    }
+
+    function stopFloatingWords() {
+      clearInterval(wordInterval);
+      document.getElementById("heartbeatWords").innerHTML = "";
     }
 
     function createHeart() {
