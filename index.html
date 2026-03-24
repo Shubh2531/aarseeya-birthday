@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday Sanu ❤️</title>
+  <title>Happy Birthday Sanu Baby ❤️</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -155,7 +155,7 @@
     }
 
     .typing-name.show {
-      animation: typing 2.8s steps(10, end) forwards, blink .8s infinite;
+      animation: typing 2.8s steps(14, end) forwards, blink .8s infinite;
     }
 
     @keyframes typing {
@@ -283,6 +283,67 @@
     .btn-soft:hover {
       transform: scale(1.05);
     }
+
+    #grandFinale {
+      background:
+        radial-gradient(circle at top, rgba(255, 105, 180, 0.22), rgba(30, 10, 50, 0.96) 45%),
+        linear-gradient(180deg, #14081f 0%, #1a0d2b 40%, #0e0718 100%);
+    }
+
+    .grand-love-text {
+      font-size: clamp(2.4rem, 7vw, 5.4rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.15;
+      text-shadow:
+        0 0 10px rgba(255,255,255,0.9),
+        0 0 20px rgba(255,92,138,0.85),
+        0 0 40px rgba(255,92,138,0.65),
+        0 0 70px rgba(255,182,193,0.55);
+      animation: grandGlow 2.2s infinite ease-in-out;
+    }
+
+    @keyframes grandGlow {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.03);
+      }
+    }
+
+    .balloon {
+      position: absolute;
+      bottom: -120px;
+      width: 60px;
+      height: 78px;
+      border-radius: 50% 50% 45% 45%;
+      animation: floatBalloon linear forwards;
+      opacity: 0.92;
+      z-index: 1;
+    }
+
+    .balloon::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 78px;
+      width: 2px;
+      height: 90px;
+      background: rgba(255,255,255,0.5);
+      transform: translateX(-50%);
+    }
+
+    @keyframes floatBalloon {
+      from {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0.95;
+      }
+      to {
+        transform: translateY(-120vh) translateX(30px) rotate(6deg);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body class="text-center">
@@ -297,10 +358,10 @@
   <!-- Page 1 -->
   <section id="pageIntro" class="min-h-screen flex flex-col items-center justify-center px-4 relative z-10">
     <div class="glass max-w-4xl w-full rounded-3xl p-6 md:p-10">
-      <p class="text-pink-500 font-bold text-lg mb-3">For My Baby ❤️</p>
+      <p class="text-pink-500 font-bold text-lg mb-3">For My Baby Girl ❤️</p>
       <h1 class="text-4xl md:text-6xl text-pink-500 font-bold mb-4">March 25, 2026</h1>
       <p class="text-lg md:text-xl text-gray-600 mb-6">
-        Today is your birthday, Paran Pyari 💌
+        Today is your birthday, Puntu 💌
       </p>
 
       <div class="grid md:grid-cols-3 gap-4 mb-8">
@@ -327,11 +388,11 @@
           so I wanted to make something that feels soft, real, and full of all the love I still carry for you.
         </p>
         <p class="mb-4">
-          For the next 1 minute and 40 seconds, just stay here, read this, feel this,
+          Wait 1:40... let this song finish. Just stay here, read this, feel this,
           and let Ve Kamleya play for you like a little piece of my heart.
         </p>
         <p class="mb-0 text-pink-500 font-semibold">
-           Baby ❤️ this surprise starts now.
+          Baby ❤️ this surprise has already started.
         </p>
       </div>
 
@@ -340,11 +401,10 @@
           <div id="kamleyaProgress" class="progress-fill"></div>
         </div>
       </div>
-      <p id="kamleyaTimer" class="text-sm text-gray-500 mb-8">1:40 remaining</p>
-
-      <button id="beginBtn" onclick="beginSurprise()" class="btn-main">
-        Open Your Birthday Surprise 🎁
-      </button>
+      <p id="kamleyaTimer" class="text-sm text-gray-500 mb-4">1:40 remaining</p>
+      <p id="autoplayFallback" class="hidden text-pink-500 text-sm font-semibold">
+        Tap anywhere once if the sound does not start.
+      </p>
 
       <div id="continueWrap" class="fade-up mt-8">
         <button onclick="showCelebrationPage()" class="btn-soft">
@@ -378,7 +438,7 @@
         Thank you for every smile, every laugh, every little effort, and every moment of love.🤍🧸
       </p>
       <p class="mb-0 text-lg leading-8 text-pink-500 font-semibold">
-        Happppppppppy Birthday buduuu💫
+        Happppppppppy Birthday buduuu 💫
       </p>
     </div>
 
@@ -403,7 +463,7 @@
       </div>
 
       <div class="mb-6">
-        <span id="typedName" class="typing-name text-4xl md:text-6xl font-bold glow-text">SANU BABY</span>
+        <span id="typedName" class="typing-name text-4xl md:text-6xl font-bold glow-text">SUSHILA KC❤️</span>
       </div>
 
       <div id="ecgWrap" class="ecg-wrap">
@@ -429,15 +489,15 @@
         </svg>
       </div>
 
-      <p id="hbText1" class="heartbeat-text text-2xl md:text-4xl font-bold glow-text mb-5">
+      <p id="hbText1" class="fade-up text-2xl md:text-4xl font-bold glow-text mb-5">
         Every beat feels your name...
       </p>
 
-      <p id="hbText2" class="heartbeat-text text-lg md:text-2xl text-pink-100 max-w-2xl mx-auto leading-8">
-        In this silence, in this night, in this heart... it’s always you, Paran Pyari.
+      <p id="hbText2" class="fade-up text-lg md:text-2xl text-pink-100 max-w-2xl mx-auto leading-8">
+        In this silence, in this night, in this heart... it’s always you, SUSHILA KC❤️.
       </p>
 
-      <p id="hbText3" class="heartbeat-text text-base md:text-xl text-pink-200 max-w-2xl mx-auto leading-8 mt-6">
+      <p id="hbText3" class="fade-up text-base md:text-xl text-pink-200 max-w-2xl mx-auto leading-8 mt-6">
         Slow... deep... soft... and then all at once — like love learning how to breathe.
       </p>
     </div>
@@ -447,10 +507,32 @@
   <section id="quoteSection" class="hidden-section min-h-screen flex flex-col items-center justify-center px-6 relative z-10">
     <div class="glass max-w-3xl w-full rounded-3xl p-8 md:p-10">
       <p class="text-3xl md:text-4xl text-pink-500 font-bold mb-6">One more thing... ❤️</p>
+
       <p class="text-xl md:text-2xl text-gray-700 leading-10">
-        Some people enter life quietly...<br>
-        but stay inside the soul forever.
+        I know sometimes I mess up…<br>
+        I know I can be stupid, and I do things I shouldn’t.<br><br>
+
+        And yeah… even the smoking part —<br>
+        I’m trying, for real. Not perfect yet, but I’m trying.<br><br>
+
+        But none of that… none of my mistakes, my habits, or my bad days ever change one thing —<br><br>
+
+        <span class="text-pink-500 font-bold">I love you.</span><br><br>
+
+        And not in a small way… not in a temporary way…<br>
+        but in a way where you became the closest person to me.<br><br>
+
+        The one I think about without trying.<br>
+        The one my heart feels calm with.<br>
+        The one I don’t want to lose.<br><br>
+
+        You’re not just someone in my life…<br>
+        you’re the person my life feels different because of.<br><br>
+
+        And even when I’m not perfect…<br>
+        my love for you is real. Always has been. Always will be.
       </p>
+
       <p class="mt-8 text-lg text-gray-500">
         And after all this... it was always you.
       </p>
@@ -487,6 +569,29 @@
     </div>
   </section>
 
+  <!-- Grand Finale -->
+  <section id="grandFinale" class="hidden-section min-h-screen flex flex-col items-center justify-center px-6 text-center relative overflow-hidden">
+    <div id="balloons"></div>
+
+    <div class="relative z-10">
+      <p class="text-pink-200 text-lg md:text-2xl mb-4 tracking-wide">My final surprise for you ✨</p>
+
+      <h1 class="grand-love-text mb-6">
+        I LOVE YOU SO MUCH<br>
+        SUSHILA KC ❤️
+      </h1>
+
+      <p class="text-white text-lg md:text-2xl max-w-3xl mx-auto leading-9 mb-8">
+        Today is all about you, your smile, your heart, your happiness, and the love I carry for you every single day.
+        You are so precious to me, and I just want you to feel loved, celebrated, and special tonight. 💖
+      </p>
+
+      <button onclick="restartSurprise()" class="btn-soft">
+        Restart Celebration 💌
+      </button>
+    </div>
+  </section>
+
   <script>
     const mediaPlayer = document.getElementById("mediaPlayer");
 
@@ -495,6 +600,7 @@
     const heartbeatSection = document.getElementById("heartbeatSection");
     const quoteSection = document.getElementById("quoteSection");
     const cakeSection = document.getElementById("cakeSection");
+    const grandFinale = document.getElementById("grandFinale");
 
     const photosContainer = document.getElementById("photos-container");
     const photos = ["photo1.jpg", "photo2.jpg", "photo3.jpg"];
@@ -502,6 +608,7 @@
     const kamleyaProgress = document.getElementById("kamleyaProgress");
     const kamleyaTimer = document.getElementById("kamleyaTimer");
     const continueWrap = document.getElementById("continueWrap");
+    const autoplayFallback = document.getElementById("autoplayFallback");
 
     let firstFlowStarted = false;
     let birthdayStarted = false;
@@ -510,10 +617,23 @@
     let wordInterval = null;
     let progressInterval = null;
     let birthdayEndedHandler = null;
+    let finaleInterval = null;
 
     function safePlay() {
       const p = mediaPlayer.play();
-      if (p && typeof p.catch === "function") p.catch(() => {});
+      if (p && typeof p.catch === "function") {
+        p.catch(() => {
+          autoplayFallback.classList.remove("hidden");
+          const unlock = () => {
+            mediaPlayer.play().catch(() => {});
+            autoplayFallback.classList.add("hidden");
+            document.removeEventListener("click", unlock);
+            document.removeEventListener("touchstart", unlock);
+          };
+          document.addEventListener("click", unlock, { once: true });
+          document.addEventListener("touchstart", unlock, { once: true });
+        });
+      }
     }
 
     function playHiddenMedia(src) {
@@ -524,7 +644,7 @@
       safePlay();
     }
 
-    function beginSurprise() {
+    function autoStartIntro() {
       if (firstFlowStarted) return;
       firstFlowStarted = true;
 
@@ -549,8 +669,8 @@
         const percent = ((total - remaining) / total) * 100;
         kamleyaProgress.style.width = percent + "%";
 
-        const mins = Math.floor(remaining / 60);
-        const secs = remaining % 60;
+        const mins = Math.floor(Math.max(remaining, 0) / 60);
+        const secs = Math.max(remaining, 0) % 60;
         kamleyaTimer.textContent = `${mins}:${String(secs).padStart(2, "0")} remaining`;
 
         if (remaining <= 0) {
@@ -608,12 +728,9 @@
       };
       mediaPlayer.addEventListener("ended", birthdayEndedHandler);
 
-      // fallback in case ended doesn't fire
       setTimeout(() => {
         if (heartbeatSection.style.display !== "flex") {
-          if (birthdayEndedHandler) {
-            mediaPlayer.removeEventListener("ended", birthdayEndedHandler);
-          }
+          if (birthdayEndedHandler) mediaPlayer.removeEventListener("ended", birthdayEndedHandler);
           showHeartbeatScene();
         }
       }, 60000);
@@ -644,6 +761,7 @@
     function showQuoteSection() {
       quoteSection.style.display = "flex";
       gsap.to(quoteSection, { opacity: 1, duration: 1 });
+      mediaPlayer.pause();
       playHiddenMedia("quote.mp4");
       document.getElementById("toCakeWrap").classList.add("show");
       quoteSection.scrollIntoView({ behavior: "smooth" });
@@ -666,8 +784,49 @@
     function fireworksFinale() {
       megaFireworks();
       setTimeout(() => {
-        alert("I love you so much, Baby ❤️🎆");
-      }, 1800);
+        openGrandFinale();
+      }, 1200);
+    }
+
+    function openGrandFinale() {
+      cakeSection.style.display = "none";
+      grandFinale.style.display = "flex";
+      gsap.to(grandFinale, { opacity: 1, duration: 1.2 });
+
+      spawnBalloons();
+      megaFireworks();
+
+      finaleInterval = setInterval(() => {
+        megaFireworks();
+      }, 2200);
+
+      setTimeout(() => {
+        clearInterval(finaleInterval);
+      }, 12000);
+
+      grandFinale.scrollIntoView({ behavior: "smooth" });
+    }
+
+    function spawnBalloons() {
+      const container = document.getElementById("balloons");
+      container.innerHTML = "";
+
+      const colors = ["#f472b6", "#fb7185", "#c4b5fd", "#93c5fd", "#fcd34d", "#ffffff"];
+
+      for (let i = 0; i < 22; i++) {
+        const balloon = document.createElement("div");
+        balloon.className = "balloon";
+        balloon.style.left = Math.random() * 100 + "vw";
+        balloon.style.background = colors[Math.floor(Math.random() * colors.length)];
+        balloon.style.animationDuration = (8 + Math.random() * 6) + "s";
+        balloon.style.animationDelay = (Math.random() * 2) + "s";
+        balloon.style.transform = `scale(${0.8 + Math.random() * 0.6})`;
+        container.appendChild(balloon);
+
+        setTimeout(() => {
+          balloon.remove();
+        }, 16000);
+      }
     }
 
     function restartSurprise() {
@@ -676,6 +835,7 @@
       mediaPlayer.src = "";
 
       clearInterval(progressInterval);
+      clearInterval(finaleInterval);
       stopHeartbeatSound();
       stopFloatingWords();
 
@@ -689,6 +849,12 @@
       document.getElementById("finalButtons").classList.remove("show");
       continueWrap.classList.remove("show");
       document.getElementById("toCakeWrap").classList.remove("show");
+      document.getElementById("typedName").classList.remove("show");
+      document.getElementById("ecgWrap").classList.remove("show");
+      document.getElementById("hbText1").classList.remove("show");
+      document.getElementById("hbText2").classList.remove("show");
+      document.getElementById("hbText3").classList.remove("show");
+      document.getElementById("balloons").innerHTML = "";
 
       kamleyaProgress.style.width = "0%";
       kamleyaTimer.textContent = "1:40 remaining";
@@ -697,9 +863,12 @@
       heartbeatSection.style.display = "none";
       quoteSection.style.display = "none";
       cakeSection.style.display = "none";
+      grandFinale.style.display = "none";
 
       pageIntro.style.display = "flex";
       window.scrollTo({ top: 0, behavior: "smooth" });
+
+      setTimeout(autoStartIntro, 600);
     }
 
     function megaFireworks() {
@@ -804,6 +973,10 @@
 
     setInterval(createHeart, 700);
     setInterval(createSpark, 900);
+
+    window.addEventListener("load", () => {
+      setTimeout(autoStartIntro, 500);
+    });
   </script>
 </body>
 </html>
